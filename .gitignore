@@ -9,11 +9,12 @@
 dist
 build
 eggs
+var
 parts
 bin
-var
 sdist
 develop-eggs
+production
 .installed.cfg
 lib
 lib64

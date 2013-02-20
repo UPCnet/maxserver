@@ -17,7 +17,8 @@ max.oauth_check_endpoint = ${hosts:oauth}/checktoken
 max.oauth_grant_type = password
 max.oauth_clientid = MAX
 max.oauth_scope = widgetcli
-max.server = http://${hosts:main}
+max.server = http://${hosts:main}:${ports:nginx}
+# For SSL # max.server = https://${hosts:main}
 max.ops_username = operations
 max.ops_password = operations
 

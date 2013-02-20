@@ -27,7 +27,7 @@ events {
 
 # Change these paths to somewhere that suits you!
 pid ${buildout:directory}/var/nginx.pid;
-error_log ${buildout:directory}/nginx.error.log;
+error_log ${buildout:directory}/var/log/nginx.error.log;
 
 http {
   # Set the mime-types via the mime.types external file
@@ -49,7 +49,7 @@ http {
     '$request_method "$request" $status "$http_x_oauth_username"';
 
   # Click tracking!
-  access_log   ${buildout:directory}/nginx.access.log  main;
+  access_log   ${buildout:directory}/var/log/nginx.access.log  main;
 
   # ~2 seconds is often enough for HTML/CSS, but connections in
   # Nginx are cheap, so generally it's safe to increase it

@@ -35,5 +35,6 @@ nosetests.xml
 .pydevproject
 
 config/nginx*
+config/*.ini
 downloads
 src

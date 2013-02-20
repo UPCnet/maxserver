@@ -10,7 +10,7 @@ pyramid.includes = pyramid_tm
                    pyramid_beaker
 
 # MAX and LDAP config
-enable_ldap = true
+enable_ldap = false
 max.oauth_server = ${hosts:oauth}
 max.oauth_token_endpoint = ${hosts:oauth}/token
 max.oauth_check_endpoint = ${hosts:oauth}/checktoken
@@ -18,6 +18,7 @@ max.oauth_grant_type = password
 max.oauth_clientid = MAX
 max.oauth_scope = widgetcli
 max.server = http://${hosts:main}:${ports:nginx}
+max.talk = http://${hosts:main}:${ports:nginx}/max
 # For SSL # max.server = https://${hosts:main}
 max.ops_username = operations
 max.ops_password = operations

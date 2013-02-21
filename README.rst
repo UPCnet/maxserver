@@ -5,15 +5,35 @@ Maxserver buildout Development edition
 Steps to succesfully deploy a max locally
 -----------------------------------------
 
-* Bootstrap and execute buildout, use ml-pcre.cfg on MacOS
-* Start Mongo process
-* Execute ./bin/initialize_max_db config/max.ini, to create initial security settings
-* Add yourself to max,  the first time will ask for your credentials and store them in .max_settings::
-    $ ./bin/maxdevel add user your.name
-    New User username: carles.bruguera
-    Done.
+* Bootstrap and execute buildout, use ml-pcre.cfg on MacOS::
+    $ python bootstrap.py
+    $ ./bin/buildout
+    or
+    $ ./bin/buildout -c ml-pcre.cfg
 
-* Start the rest of processes
+
+* Start supervisor::
+    $ ./bin/supervisord
+
+
+* Create initial security settings::
+    $ ./bin/initialize_max_db config/max.ini
+    Created default security info in MAXDB.\n"
+    Remember to restart max process!
+
+
+* Restart max process to apply the new security settings
+    $ ./bin/supervisorctl restart max
+
+
+* Initialize max.ui development widget base settings, it will ask for your credentials
+and store them in .max_settings::
+    $ ./bin/maxui.setup
+
+
+* Add yourself to max::
+    $ ./bin/maxdevel add user your.name
+    Done.
 
 
 Considerations using the development version widget
@@ -32,6 +52,9 @@ Considerations using the development version widget
 
 Troubleshooting
 ---------------
+
+* 401 when creating the initial user:
+    - Possibly you don't have permission to request a token from the designated oauth server
 
 * Maxtalk complains: AttributeError: 'GeventSocketIOWorker' object has no attribute 'socket'
     - Possibly wrong gunicorn version, last known working 0.16.1

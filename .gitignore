@@ -38,4 +38,5 @@ nosetests.xml
 config/nginx*
 config/*.ini
 downloads
+.max_settings
 src

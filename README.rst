@@ -22,12 +22,12 @@ Steps to succesfully deploy a max locally
     Created default security info in MAXDB.\n"
     Remember to restart max process!
 
-* Restart max process to apply the new security settings
+* Restart max process to apply the new security settings::
 
     $ ./bin/supervisorctl restart max
 
 * Initialize max.ui development widget base settings, it will ask for your credentials
-and store them in .max_settings::
+  and store them in .max_settings::
 
     $ ./bin/maxui.setup
 
@@ -40,18 +40,17 @@ and store them in .max_settings::
 Considerations using the development version widget
 ------------------------
 
-* You must have at least an user created to view widget
-* Assuming you run the buildout with main host as "localhost":
-    - You can view the development widget at ``http://localhost:8080/maxui-dev/devel.html``
-    - You can change presets appending ``?preset=presetname``
-    - Default preset ``timeline`` works out-of-the-box
-    - If you want to use the ``context`` preset, you have to create a context and subscribe user(s) to it::
+- You must have at least an user created to view and use the widget
+- ``maxui.setup`` script has configured ``src/max.ui.js/presets/base.json`` with buildout-generated parameters
+- After the previous setup steps, the development widget is visible at ``http://localhost:8080/maxui-dev/devel.html``
+- Default preset ``timeline`` works out-of-the-box
+- You can change presets appending ``?preset=presetname``
+- If you want to use the ``context`` preset, you have to create a context and subscribe user(s) to it::
 
         $ ./bin/max.devel add context http://contexturi ContextName
         $ ./bin/max.devel add subscription user.name http://contexturi
 
-
-* If you used another hostname, you have to change it in src/max.ui.js/presets/base.json
+* If you run buildout again, you have to run ``maxui.setup``script again. Any changes will be lost.
 
 
 Troubleshooting

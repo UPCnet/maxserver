@@ -43,7 +43,7 @@ mongodb.url = mongodb://${hosts-extra:mongo}
 mongodb.db_name = max
 
 [server:main]
-use = egg:Paste#http
+use = egg:waitress#main
 host = ${hosts:main}
 port = ${ports:bigmax}
 

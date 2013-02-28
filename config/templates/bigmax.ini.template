@@ -1,10 +1,10 @@
 [app:main]
 use = egg:bigmax
-pyramid.reload_templates = true
+pyramid.reload_templates = ${pyramid:development}
 pyramid.debug_authorization = false
 pyramid.debug_notfound = false
 pyramid.debug_routematch = false
-pyramid.debug_templates = false
+pyramid.debug_templates = ${pyramid:development}
 pyramid.default_locale_name = en
 pyramid.includes = pyramid_debugtoolbar
                    pyramid_tm
@@ -20,7 +20,8 @@ max.oauth_clientid = MAX
 max.oauth_scope = widgetcli
 max.server = http://${hosts:main}:${ports:nginx}
 max.talk = http://${hosts:main}:${ports:nginx}/max
-# For SSL # max.server = https://${hosts:main}
+#SSL#max.server = https://${hosts:main}
+#SSL#max.talk = http://${hosts:main}/max
 max.ops_username = operations
 max.ops_password = operations
 

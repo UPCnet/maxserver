@@ -1,15 +1,15 @@
 [app:main]
 use = egg:max
-pyramid.reload_templates = true
+pyramid.reload_templates = ${pyramid:development}
 pyramid.debug_authorization = false
 pyramid.debug_notfound = false
 pyramid.debug_routematch = false
-pyramid.debug_templates = true
+pyramid.debug_templates = ${pyramid:development}
 pyramid.default_locale_name = en
 pyramid.includes = pyramid_debugtoolbar
                    pyramid_tm
 
-max.oauth_check_endpoint = ${hosts:oauth}
+max.oauth_check_endpoint = ${hosts:oauth}/checktoken
 mongodb.url = mongodb://${hosts-extra:mongo}
 mongodb.db_name = max
 avatar_folder = ${buildout:directory}/var/avatars

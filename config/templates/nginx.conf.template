@@ -118,8 +118,6 @@ http {
   server {
 
     listen ${ports:nginx} default_server deferred;
-
-    #SSL# listen 443 default_server deferred;
     #SSL# ssl on;
 
     client_max_body_size 42k;

@@ -154,13 +154,13 @@ http {
         if ($request_method = 'OPTIONS') {
 
             # Not used by now
-            add_header 'Access-Control-Allow-Origin' '*';
-            add_header 'Access-Control-Allow-Credentials' 'true';
-            add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS';
+            # add_header 'Access-Control-Allow-Origin' '*';
+            # add_header 'Access-Control-Allow-Credentials' 'true';
+            # add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS';
             #
             # Custom headers and headers various browsers *should* be OK with but aren't
             #
-            add_header 'Access-Control-Allow-Headers' 'X-Oauth-Token,X-Oauth-Username,X-Oauth-Scope,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+            # add_header 'Access-Control-Allow-Headers' 'X-Oauth-Token,X-Oauth-Username,X-Oauth-Scope,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
 
             # Tell client that this pre-flight info is valid for 20 days
             add_header 'Access-Control-Max-Age' 1728000;
@@ -212,4 +212,5 @@ http {
     }
 
   }
+include oauth.conf;
 }

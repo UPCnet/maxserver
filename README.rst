@@ -36,9 +36,21 @@ Steps to succesfully deploy a max locally
     $ ./bin/maxdevel add user your.name
     Done.
 
+Extra steps
+-----------
+
+* If you want to enable SSL, you first have to:
+    - set ``enable-ssl`` variable in ``[nginx-config]`` section to ``true``
+    - set ``nginx`` variable in ``[ports]`` section to ``443``
+    - remove ``parts/supervisor/supervisord.conf`` and re-run buildout
+
+* If you are setting up a SSL production environment, also:
+    - set certificate file locations in ``[nginx-config]`` section
+    - set ``main`` variable in ``[hosts]`` section to your domain name
+
 
 Considerations using the development version widget
-------------------------
+---------------------------------------------------
 
 - You must have at least an user created to view and use the widget
 - ``maxui.setup`` script has configured ``src/max.ui.js/presets/base.json`` with buildout-generated parameters

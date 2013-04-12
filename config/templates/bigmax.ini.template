@@ -12,6 +12,7 @@ pyramid.includes = pyramid_debugtoolbar
 
 # MAX and LDAP config
 enable_ldap = false
+exceptions_log = ${buildout:directory}/var/log/exceptions.log
 max.oauth_server = ${hosts:oauth}
 max.oauth_token_endpoint = ${hosts:oauth}/token
 max.oauth_check_endpoint = ${hosts:oauth}/checktoken

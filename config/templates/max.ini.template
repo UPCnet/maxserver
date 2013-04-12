@@ -22,13 +22,13 @@ port = ${ports:max}
 # Begin logging configuration
 
 [loggers]
-keys = root, max
+keys = root, max, exceptions
 
 [handlers]
-keys = console
+keys = console, exceptionlog
 
 [formatters]
-keys = generic
+keys = generic, clean
 
 [logger_root]
 level = WARN
@@ -39,11 +39,25 @@ level = WARN
 handlers =
 qualname = max
 
+[logger_exceptions]
+level = DEBUG
+handlers = exceptionlog
+qualname = exceptions
+
+[handler_exceptionlog]
+level = DEBUG
+class = FileHandler
+args = ('${buildout:directory}/var/log/exceptions.log', 'a')
+formatter = clean
+
 [handler_console]
 class = StreamHandler
 args = (sys.stderr,)
 level = NOTSET
 formatter = generic
+
+[formatter_clean]
+format = %(message)s
 
 [formatter_generic]
 format = %(asctime)s %(levelname)-5.5s [%(name)s][%(threadName)s] %(message)s

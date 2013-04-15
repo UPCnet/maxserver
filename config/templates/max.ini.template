@@ -10,6 +10,9 @@ pyramid.includes = pyramid_debugtoolbar
                    pyramid_tm
 
 max.oauth_check_endpoint = ${hosts:oauth}/checktoken
+cache.regions = oauth_token
+cache.type = memory
+cache.oauth_token.expire = 60
 mongodb.url = mongodb://${hosts-extra:mongo}
 mongodb.db_name = max
 avatar_folder = ${buildout:directory}/var/avatars

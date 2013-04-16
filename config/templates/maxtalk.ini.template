@@ -16,7 +16,7 @@ use = egg:gunicorn#main
 host = ${hosts:main}
 port = ${ports:maxtalk}
 workers = 1
-worker_class = pyramid_socketio.gunicorn.workers.GeventSocketIOWorker
+worker_class = socketio.sgunicorn.GeventSocketIOWorker
 timeout = 600
 
 

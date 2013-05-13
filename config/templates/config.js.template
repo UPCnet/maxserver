@@ -1,0 +1,10 @@
+var config = {}
+
+config.port = ${ports:maxtalk}
+config.redishost = '${hosts:redis}'
+config.redisport = ${ports:redis}
+config.mongogodb_uri = 'mongodb://${hosts:mongodb}/max'
+config.namespace = '/max'
+config.instances = ${node:instances}
+
+module.exports = config

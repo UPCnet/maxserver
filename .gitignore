@@ -37,7 +37,8 @@ nosetests.xml
 .pydevproject
 
 
-
+config/redis.conf
+config/config.js
 config/nginx*
 config/*.ini
 config/ssl

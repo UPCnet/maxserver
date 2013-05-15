@@ -1,19 +1,25 @@
 import sys
 import requests
 import json
+import os
+import signal
+
 from datetime import datetime
 
 import gevent
+from gevent.queue import Queue
+from gevent.event import AsyncResult
+
 from gevent.monkey import patch_all
-import signal
 
 from messengers import PollingMessenger
 from messengers import WebsocketMessenger
+
+
 patch_all()
 
 
 def createUsers(g, num):
-    sys.stdout.write("Creating %d users " % num)
     sys.stdout.flush()
     users = []
     for i in range(num):
@@ -27,7 +33,6 @@ def createUsers(g, num):
         sys.stdout.flush()
 
         users.append(username)
-    print
     return users
 
 
@@ -71,40 +76,63 @@ ADMIN_HEADERS = {
     'X-Oauth-Scope': 'widgetcli',
 }
 
-GROUPS = 10
+GROUPS = 1
 USERS = 20
-MESSAGES = 20
+MESSAGES = 100
 RATE = 1  # Messages per second in a conversation
 #WAIT = RATE * USERS
 WAIT = RATE
 
 
-def start_messenger(username, conversation, tid, userid, mtype):
+# declare events
+start_talking = AsyncResult()
+all_messages_received = AsyncResult()
+
+
+def start_messenger(username, conversation, tid, userid, mtype, everybody, logger):
     t0 = datetime.now()
     if mtype == 'xhr-polling':
         Messenger = PollingMessenger
     elif mtype == 'websocket':
         Messenger = WebsocketMessenger
-    messenger = Messenger(MAXTALK_HOST, MAXTALK_PORT, HOST, PORT, username, conversation)
+
+    messenger = Messenger(MAXTALK_HOST, MAXTALK_PORT, HOST, PORT, username, conversation, everybody, logger)
 
     # Store the elapsed connection time
     t1 = datetime.now()
     sec = t1 - t0
     messenger.join_time = sec.total_seconds()
 
-    #wait until everyone in the conversation is in
-    while messenger.joined < USERS:
-        gevent.sleep(0.1)
-    print '[%d] Everybody in, delivering messages' % tid
+    def start():
+        start_talking.get()
 
-    # #user-order based wait to simulate a human rate
-    # #gevent.sleep(userid * RATE)
+    if userid == 1:
+        def asker(messenger):
+            while messenger.joined < USERS:
+                gevent.sleep(10)
+                messenger.emit('ask', messenger.conversation)
+
+        gevent.spawn(asker, messenger)
+
+    start_talking.get()
+
+    # gevent.joinall([
+    #     gevent.spawn(start),
+    # ])
+
+    messenger.start_talking_time = datetime.now()
+    # # #user-order based wait to simulate a human rate
+    # # #gevent.sleep(userid * RATE)
+
     for i in range(MESSAGES):
         messenger.sendMessage("I'm %s" % username)
         gevent.sleep(WAIT)
-    while messenger.total_received < ((USERS * MESSAGES) - MESSAGES):
-        gevent.sleep(1)
+    #print 'done', username
+    all_messages_received.get()
+    # while messenger.total_received < ((USERS * MESSAGES) - MESSAGES):
+    #     gevent.sleep(0.1)
 
+    messenger.end_talking_time = datetime.now()
     messenger.seconds_per_message = messenger.total_elapsed / messenger.total_received
     gevent.sleep(1)
     return messenger
@@ -113,38 +141,91 @@ if __name__ == '__main__':
 
     #Enable script stop by CTRL + C
     gevent.signal(signal.SIGQUIT, gevent.shutdown)
+    everybody = Queue()
+    message_queue = Queue()
+
+    def waiter(conversations):
+        while sum(conversations.values()) < (GROUPS * USERS):
+            convs = everybody.get()
+            for key, value in convs.items():
+                if key in conversations.keys():
+                    if value > conversations[key]:
+                        conversations[key] = value
+            os.system('clear')
+            print
+            print '============================================'
+            print ' Wating for all users to join conversations'
+            print '============================================'
+            print
+            print '\n'.join([' * %s: %d' % (key, value) for key, value in conversations.items()])
+            gevent.sleep(0)
+        print
+        print ' %d users joined on %d conversations, Everyone In.' % (GROUPS * USERS, GROUPS)
+        print ' Start talking . . .'
+        print
+        start_talking.set()
+
+    def message_log():
+        received = 0
+        total_notifications = USERS * MESSAGES * (USERS - 1) * GROUPS
+        while received < total_notifications:
+            message_queue.get()
+            received += 1
+            sys.stdout.write('\r %d / %d received' % (received, total_notifications))
+            sys.stdout.flush()
+            gevent.sleep(0)
+
+        all_messages_received.set()
 
     groups = []
     messenger_threads = []
     conversations = {}
 
-    print "Setup users and conversations"
+    os.system('clear')
+
+    print
+    print '==============================='
+    print " Setup users and conversations"
+    print '==============================='
+    print
     for g in range(GROUPS):
-        print 'Conversation %d' % (g + 1)
-        print
+        sys.stdout.write(' Creating conversation %d with %d users:' % ((g + 1), USERS))
+        sys.stdout.flush()
         # Create test users in a conversation
         users = createUsers(g, USERS)
         #users.append(MAXUI_DEV_VISUAL_DEBUG_USER)
         conversation_id = createConversation(users)
-        print 'Created conversation %s' % conversation_id
-        print '-' * 80
+        print ' %s DONE.' % conversation_id
         conversations[conversation_id] = users
+    gevent.sleep(0.5)
+    os.system('clear')
     print
-    print '=' * 40
-    print "       Spawning %d threads " % (GROUPS * USERS)
-    print '=' * 40
+    print '======================='
+    print " Spawning %d threads " % (GROUPS * USERS)
+    print '======================='
     print
 
+    gevent.spawn(waiter, dict([(key, 0) for key, value in conversations.items()]))
+    gevent.spawn(message_log)
+
+    gevent.sleep(0.5)
     #Spawn a messenger for each user in the conversations
     for sec, g in enumerate(conversations.items()):
         cid, users = g
         for num, user in enumerate(users):
-            messenger_threads.append(gevent.spawn(start_messenger, user, cid, (sec * 20) + (num + 1), num, MESSENGER_TYPE))
+            messenger_threads.append(gevent.spawn(start_messenger, user, cid, (sec * 20) + (num + 1), num, MESSENGER_TYPE, everybody, message_queue))
     gevent.joinall(messenger_threads)
 
     # Collect information harvested by each thread
     connect_times = [a.value.join_time for a in messenger_threads]
     message_times = [a.value.seconds_per_message for a in messenger_threads]
+
+    first_message_time = min([a.value.start_talking_time for a in messenger_threads])
+    last_message_time = min([a.value.end_talking_time for a in messenger_threads])
+    total_sending_time = last_message_time - first_message_time
+    total_sending_time = total_sending_time.total_seconds()
+
+    print
     print
     print
     print ' RESULTS'
@@ -161,9 +242,12 @@ if __name__ == '__main__':
     print ' MAX     : %.2f seconds' % (max(connect_times))
     print
 
-    print 'Message notification delivery times'
+    print 'Message notification times'
     print '------------------------------------'
     print ' AVERAGE : %.2f seconds/message' % (sum(message_times) / len(messenger_threads))
     print ' MIN     : %.2f seconds/message' % (min(message_times))
     print ' MAX     : %.2f seconds/message' % (max(message_times))
+    print
+    print 'TOTAL sending time : %.2f (%.3f / message)' % (total_sending_time, total_sending_time / (USERS * GROUPS * MESSAGES))
+    print
     print

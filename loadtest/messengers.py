@@ -11,7 +11,7 @@ patch_all()
 
 
 class SocketIOMessenger(object):
-    def __init__(self, url, port, maxurl, maxport, username, conversation, namespace='/max'):
+    def __init__(self, url, port, maxurl, maxport, username, conversation, everybody, logger, namespace='/max'):
         self.url = url
         self.port = port
         self.schema = 'https' if self.port == 443 else 'http'
@@ -21,6 +21,8 @@ class SocketIOMessenger(object):
         self.username = username
         self.conversation = conversation
         self.ns = namespace
+        self.everybody = everybody
+        self.logger = logger
         self.join()
 
         self.listen_event('listening')
@@ -47,9 +49,9 @@ class SocketIOMessenger(object):
             'X-Oauth-Scope': 'widgetcli',
         }
 
-    def notify(self, stime, r, **kwargs):
-        #print '%s sent' % self.username
-        self.emit('message', {'conversation': self.conversation, 'timestamp': stime})
+    def notify(self, stime, response, **kwargs):
+        if response:
+            self.emit('messagee', {'conversation': self.conversation, 'timestamp': stime})
 
     def sendMessage(self, message):
         payload = {
@@ -72,7 +74,11 @@ class SocketIOMessenger(object):
 
     def on_people(self, *args):
         #print '%d in room' % args[0]['inroom']
-        self.joined = args[0]['inroom']
+        # self.joined = args[0]['inroom']
+        rooms = args[0]['rooms']
+        people_in_rooms = dict(([(roomn[5:], len(people)) for roomn, people in rooms.items() if roomn.startswith('/max/')]))
+        self.joined = people_in_rooms[self.conversation]
+        self.everybody.put_nowait(people_in_rooms)
 
     def on_joined(self, *args):
         #print '%s joined %s in conversation %s' % (args[0]['username'], self.username, args[0]['conversation'])
@@ -90,6 +96,7 @@ class SocketIOMessenger(object):
 
         self.total_elapsed += elapsed.total_seconds()
         self.total_received += 1
+        self.logger.put_nowait(1)
 
 
 class WebsocketMessenger(SocketIOMessenger):

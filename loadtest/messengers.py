@@ -51,7 +51,7 @@ class SocketIOMessenger(object):
 
     def notify(self, stime, response, **kwargs):
         if response:
-            self.emit('messagee', {'conversation': self.conversation, 'timestamp': stime})
+            self.emit('message', {'conversation': self.conversation, 'timestamp': stime})
 
     def sendMessage(self, message):
         payload = {

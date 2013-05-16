@@ -6,5 +6,5 @@ config.redisport = ${ports:redis}
 config.mongogodb_uri = 'mongodb://${hosts:mongodb}/max'
 config.namespace = '/max'
 config.instances = ${node:instances}
-
+config.debug_socketio = true
 module.exports = config

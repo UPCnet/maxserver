@@ -3,11 +3,9 @@ import subprocess
 import re
 
 process = 'server.js'
-psw = ps.bake('xww')
-
+psw = ps.bake('auxww')
 lines = psw().stdout
-pids = re.findall(r'\n\s*(\d+).*?%s.*' % process, lines)
-
+pids = re.findall(r'\n\s*[\w\d]+\s*(\d+).*?%s.*' % process, lines)
 
 command = 'top -p {} -d 0.5 -b'.format(','.join(pids))
 print command

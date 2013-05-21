@@ -63,7 +63,7 @@ class SocketIOMessenger(object):
         from functools import partial
         req_start = datetime.now().isoformat()
         callback = partial(self.notify, req_start)
-        self.notify(req_start, None)
+        self.notify(req_start, True)
 
         requests.post(
             '{}://{}:{}/conversations/{}/messages'.format(self.maxschema, self.maxurl, self.maxport, self.conversation),
@@ -109,7 +109,7 @@ class WebsocketMessenger(SocketIOMessenger):
         self.namespace.emit(event, payload)
 
     def join(self):
-        self.socket = SocketIO(self.url, self.port)
+        self.socket = SocketIO(self.url, self.port, secure=self.schema == 'https')
         self.namespace = self.socket.connect(self.ns)
 
 

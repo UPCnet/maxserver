@@ -63,8 +63,11 @@ def createConversation(users):
 
 HOST = 'localhost'
 PORT = 8081
+#MAXTALK_HOST = 'rocalcom.upc.edu'
+#MAXTALK_PORT = 443
 MAXTALK_HOST = 'localhost'
-MAXTALK_PORT = 8081
+MAXTALK_PORT = 6545
+
 SCHEMA = 'https' if PORT == 443 else 'http'
 MAX_URL = '{}://{}:{}'.format(SCHEMA, HOST, PORT)
 MAXUI_DEV_VISUAL_DEBUG_USER = 'usuari.iescude'
@@ -76,9 +79,9 @@ ADMIN_HEADERS = {
     'X-Oauth-Scope': 'widgetcli',
 }
 
-GROUPS = 1
+GROUPS = 10
 USERS = 20
-MESSAGES = 100
+MESSAGES = 10
 RATE = 1  # Messages per second in a conversation
 #WAIT = RATE * USERS
 WAIT = RATE

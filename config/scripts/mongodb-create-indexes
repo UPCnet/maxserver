@@ -1,0 +1,27 @@
+#!/usr/bin/python
+import re
+import sys
+import pymongo
+
+
+try:
+    path, mongourl, indexes = sys.argv
+except:
+    print 'Not enough arguments'
+    sys.exit(1)
+
+conn = pymongo.Connection(mongourl)
+indexes_file = open(indexes).read()
+clean = re.sub(r'(?:^|\n)#+[^\n]*', r'', indexes_file)
+databases = re.findall(r'[^#].*?\[database:([\w\d]+)\]([^\[$]+)', clean, re.DOTALL)
+for database_name, raw_indexes in databases:
+    count = 0
+    db = conn[database_name]
+    indexes = re.findall(r'(\w+):([^\s]+)', raw_indexes, re.DOTALL)
+    for collection, index_key in indexes:
+        sys.stdout.write('. ')
+        sys.stdout.flush()
+        db[collection].create_index(index_key)
+        count += 1
+    if count:
+        print "\nAdded {} indexes to database '{}'".format(count, database_name)

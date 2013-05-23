@@ -1,0 +1,27 @@
+##
+##   Indexes for mongo. Syntax:
+##
+##   [database:name]
+##   collection1:key
+##   collection2:key.subkey
+##
+
+[database:max]
+
+users:username
+users:twitterUsername
+
+contexts:urlHash
+contexts:twitterUsername
+contexts:twitterHashtag
+
+activity:actor.username
+activity:object._keywords
+activity:object._hashtags
+activity:contexts.url
+activity:visible
+activity:verb
+
+conversations:participants
+conversations.objectType
+

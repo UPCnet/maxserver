@@ -5,6 +5,12 @@ Maxserver buildout Development edition
 Steps to succesfully deploy a max locally
 -----------------------------------------
 
+* Install OS library dependencies (for Ubuntu systems)::
+
+    apt-get install zlib1g-dev build-essential libldap2-dev libsasl2-dev
+    libreadline6-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libssl-dev
+    tk-dev libgdbm-dev libc6-dev libbz2-dev libxslt1-dev libpcre3-dev
+
 * Bootstrap and execute buildout, use ml-pcre.cfg on MacOS::
 
     $ python bootstrap.py

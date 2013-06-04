@@ -6,8 +6,7 @@ pyramid.debug_notfound = false
 pyramid.debug_routematch = false
 pyramid.debug_templates = ${max:development}
 pyramid.default_locale_name = en
-pyramid.includes = pyramid_debugtoolbar
-                   pyramid_tm
+pyramid.includes = pyramid_tm
 
 max.oauth_check_endpoint = ${hosts:oauth}/checktoken
 cache.regions = oauth_token

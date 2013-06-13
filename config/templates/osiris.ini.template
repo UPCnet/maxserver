@@ -15,19 +15,14 @@ osiris.store.db = osiris
 osiris.store.collection = tokens
 osiris.tokenexpiry = 0
 
+osiris.mongodb.cluster = true
+osiris.mongodb.hosts = ${hosts:mongodb}
+osiris.mongodb.replica_set = maxcluster
+
 osiris.whoconfig = %(here)s/osiris-who.ini
 # Check README instructions if you want to enable LDAP auth backend
 osiris.ldap_enabled = false
-osiris.ldap.server = ldaps://ldap-pre.upc.edu
-osiris.ldap.userbind = cn=ldap.upc,ou=users,dc=upc,dc=edu
-osiris.ldap.password = secret
-osiris.ldap.userbasedn = ou=users,dc=upc,dc=edu
-osiris.ldap.userfilter = (cn=%+(login)s)
-osiris.ldap.userscope = SCOPE_ONELEVEL
-osiris.ldap.groupbasedn = ou=groups,dc=upc,dc=edu
-osiris.ldap.groupfilter = (&(objectClass=groupOfNames)(member=%+(userdn)s))
-osiris.ldap.groupscope = SCOPE_SUBTREE
-osiris.ldap.groupcache = 600
+osiris.ldapconfig = %(here)s/ldap.ini
 
 [server:main]
 use = egg:waitress#main

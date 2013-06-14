@@ -1,0 +1,4 @@
+#!/bin/sh
+./bin/rabbitmqctl add_user maxrabbit operations
+./bin/rabbitmqctl add_vhost twitter
+./bin/rabbitmqctl set_permissions -p twitter maxrabbit ".*" ".*" ".*"

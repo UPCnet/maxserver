@@ -45,3 +45,4 @@ config/ssl
 downloads
 .max_settings
 src
+erl_crash.dump

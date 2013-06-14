@@ -1,0 +1,26 @@
+#!/bin/sh
+
+BUILDOUT_DIR="${buildout:directory}"
+RABBITMQ_HOME="${rabbitmq:home}"
+SCRIPT_DIR="${rabbitmq:scripts}}"
+NODENAME="${rabbitmq:nodename}"
+
+## Set defaults
+. ${rabbitmq:scripts}/rabbitmq-defaults
+
+## Common defaults
+SERVER_ERL_ARGS="+K true +A30 +P 1048576 \
+  -kernel inet_default_connect_options [{nodelay,true}]"
+
+PID_FILE="${rabbitmq:home}/$$NODENAME.pid"
+# Config file WITHOUT the .config extension
+CONFIG_FILE="${buildout:directory}/config/rabbitmq/rabbitmq"
+CONF_ENV_FILE="${buildout:directory}/config/rabbitmq/rabbitmq-env.conf"
+LOG_BASE="${buildout:directory}/var/log/rabbitmq"
+MNESIA_BASE="${buildout:directory}/var/rabbitmq/mnesia"
+
+PLUGINS_DIR="${rabbitmq:home}/plugins"
+ENABLED_PLUGINS_FILE="${buildout:directory}/config/rabbitmq/enabled_plugins"
+
+[ -f $$CONF_ENV_FILE ] && . $$CONF_ENV_FILE
+

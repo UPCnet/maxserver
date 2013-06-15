@@ -42,6 +42,7 @@ config/config.js
 config/nginx*
 config/*.ini
 config/ssl
+config/rabbit*
 downloads
 .max_settings
 src

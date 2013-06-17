@@ -15,7 +15,7 @@ osiris.store.db = osiris
 osiris.store.collection = tokens
 osiris.tokenexpiry = 0
 
-osiris.mongodb.cluster = true
+osiris.mongodb.cluster = false
 osiris.mongodb.hosts = ${hosts:mongodb}
 osiris.mongodb.replica_set = maxcluster
 

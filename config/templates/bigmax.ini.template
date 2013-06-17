@@ -20,7 +20,7 @@ max.oauth_scope = widgetcli
 max.server = http://${hosts:main}:${ports:nginx}
 max.talk = http://${hosts:main}:${ports:nginx}/stomp
 #SSL#max.server = https://${hosts:main}
-#SSL#max.talk = https://${hosts:main}/max
+#SSL#max.talk = https://${hosts:main}/stomp
 max.ops_username = operations
 max.ops_password = operations
 

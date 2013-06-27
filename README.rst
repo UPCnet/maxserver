@@ -11,7 +11,7 @@ Steps to succesfully deploy a max locally
     libreadline6-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libssl-dev
     tk-dev libgdbm-dev libc6-dev libbz2-dev libxslt1-dev libpcre3-dev
 
-..note::
+.. note::
 
     No longer needed as the brew formula for pcre in MacOS-ML fixes it.
 
@@ -30,6 +30,12 @@ Steps to succesfully deploy a max locally
 
     $ ./bin/initialize_max_db config/max.ini
     Created default security info in MAXDB.\n"
+    Remember to restart max process!
+
+* Create initial cloudapis settings::
+
+    $ ./bin/max.cloudapis twitter.cfg
+    Created cloudapis info in MAXDB.\n"
     Remember to restart max process!
 
 * Restart max process to apply the new security settings::

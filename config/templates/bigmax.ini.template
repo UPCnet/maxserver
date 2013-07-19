@@ -12,6 +12,7 @@ pyramid.includes = pyramid_tm
 # MAX and LDAP config
 exceptions_log = ${buildout:directory}/var/log/exceptions.log
 max.oauth_server = ${hosts:oauth}
+max.oauth_standard = false
 max.oauth_token_endpoint = ${hosts:oauth}/token
 max.oauth_check_endpoint = ${hosts:oauth}/checktoken
 max.oauth_grant_type = password

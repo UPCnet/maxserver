@@ -11,17 +11,15 @@ Steps to succesfully deploy a max locally
     libreadline6-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libssl-dev
     tk-dev libgdbm-dev libc6-dev libbz2-dev libxslt1-dev libpcre3-dev
 
-.. note::
+* Install OSX dependencies::
 
-    No longer needed as the brew formula for pcre in MacOS-ML fixes it.
+    brew install pcre
 
-* Bootstrap and execute buildout, use ml-pcre.cfg on MacOS::
+* Bootstrap and execute buildout::
 
     $ python bootstrap.py
     $ ./bin/buildout
-    or
-    $ ./bin/buildout -c ml-pcre.cfg
-
+ 
 * Start supervisor::
 
     $ ./bin/supervisord
@@ -34,7 +32,7 @@ Steps to succesfully deploy a max locally
 
 * Create initial cloudapis settings::
 
-    $ ./bin/max.cloudapis twitter.cfg
+    $ ./bin/max.cloudapis -c twitter.cfg
     Created cloudapis info in MAXDB.\n"
     Remember to restart max process!
 

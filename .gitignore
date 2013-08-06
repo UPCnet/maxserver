@@ -43,6 +43,7 @@ config/nginx*
 config/*.ini
 config/ssl
 config/rabbit*
+config/*.pem
 downloads
 .max_settings
 src

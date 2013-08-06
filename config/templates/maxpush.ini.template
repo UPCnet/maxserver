@@ -1,0 +1,44 @@
+# Used for rabbitMQ consumers and scripts
+[rabbitmq]
+server = ${hosts:main}
+maxserver = http://${hosts:main}:${ports:nginx}
+
+[push]
+push_certificate_file = ${buildout:directory}/config/apns-production.pem
+
+# Begin logging configuration
+
+[loggers]
+keys = root, maxpush
+
+[handlers]
+keys = console
+
+[formatters]
+keys = generic
+
+[logger_root]
+level = WARN
+handlers = console
+
+[logger_maxpush]
+level = INFO
+handlers = console
+qualname = maxpush
+
+[handler_console]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = generic
+
+[handler_maxpush]
+level = INFO
+class = FileHandler
+args = ('${buildout:directory}/var/log/maxpush.log', 'a')
+formatter = generic
+
+[formatter_generic]
+format = %(levelname) -10s %(asctime)s %(name) -10s %(funcName) -35s %(lineno) -5d: %(message)s
+
+# End logging configuration

@@ -45,6 +45,7 @@ config/*.ini
 config/ssl
 config/rabbit*
 config/*.pem
+config/.max_restricted
 downloads
 .max_settings
 src

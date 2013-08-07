@@ -1,0 +1,8 @@
+{
+    "Python": {
+        "python": "/Users/sneridagh/dev/python/python-2.7/bin/python",
+        "pythonExtraPaths": [
+            "/Users/sneridagh/dev/maxserver.devel/parts/omelette"
+        ]
+    }
+}

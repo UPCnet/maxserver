@@ -1,15 +1,28 @@
 # Used for rabbitMQ consumers and scripts
 [rabbitmq]
 server = ${hosts:main}
-maxserver = http://${hosts:main}:${ports:nginx}
+
+[max]
+server = http://${hosts:main}:${ports:nginx}
+oauth_server = ${hosts:oauth}
+max.talk_server = ${hosts:maxtalk}
+config_directory = ${buildout:directory}/config/
+
+[mongodb]
+mongodb.url = mongodb://${hosts-extra:mongo}
+mongodb.db_name = max
+mongodb.cluster = false
+mongodb.hosts = ${hosts:mongodb}
+mongodb.replica_set = maxcluster
 
 [push]
 push_certificate_file = ${buildout:directory}/config/apns-production.pem
 
+
 # Begin logging configuration
 
 [loggers]
-keys = root, maxpush
+keys = root, maxbunny
 
 [handlers]
 keys = console
@@ -21,10 +34,10 @@ keys = generic
 level = WARN
 handlers = console
 
-[logger_maxpush]
+[logger_maxbunny]
 level = INFO
 handlers = console
-qualname = maxpush
+qualname = maxbunny
 
 [handler_console]
 class = StreamHandler
@@ -32,10 +45,10 @@ args = (sys.stderr,)
 level = NOTSET
 formatter = generic
 
-[handler_maxpush]
+[handler_maxbunny]
 level = INFO
 class = FileHandler
-args = ('${buildout:directory}/var/log/maxpush.log', 'a')
+args = ('${buildout:directory}/var/log/maxbunny.log', 'a')
 formatter = generic
 
 [formatter_generic]

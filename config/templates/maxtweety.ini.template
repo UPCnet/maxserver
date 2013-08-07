@@ -1,0 +1,58 @@
+# Used for maxtweety consumers and scripts
+[twitter]
+consumer_key =
+consumer_secret =
+access_token =
+access_token_secret =
+
+[rabbitmq]
+server = ${hosts:main}
+
+[max:default]
+server = http://${hosts:main}:${ports:nginx}
+oauth_server = ${hosts:oauth}
+max.talk_server = ${hosts:maxtalk}
+config_directory = ${buildout:directory}/config/
+
+[max:other]
+server = http://${hosts:main}:${ports:nginx}
+oauth_server = ${hosts:oauth}
+max.talk_server = ${hosts:maxtalk}
+config_directory = ${buildout:directory}/config/
+
+# Begin logging configuration
+
+[loggers]
+keys = root, maxtweety
+
+[handlers]
+keys = console
+
+[formatters]
+keys = generic
+
+[logger_root]
+level = WARN
+handlers = console
+
+[logger_maxtweety]
+level = INFO
+handlers = console
+qualname = maxtweety
+
+[handler_console]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = generic
+
+[handler_maxtweety]
+level = INFO
+class = FileHandler
+args = ('${buildout:directory}/var/log/maxtweety.log', 'a')
+formatter = generic
+
+[formatter_generic]
+format = %(levelname) -10s %(asctime)s %(name) -10s %(funcName) -35s %(lineno) -5d: %(message)s
+
+# End logging configuration

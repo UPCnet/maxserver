@@ -11,14 +11,14 @@ config_directory = ${buildout:directory}/config/
 [rabbitmq]
 server = ${hosts:main}
 
-[max:default]
+[max_default]
 hashtag = #upc
 server = http://${hosts:main}:${ports:nginx}
 oauth_server = ${hosts:oauth}
 max.talk_server = ${hosts:maxtalk}
 config_directory = ${buildout:directory}/config/
 
-[max:other]
+[max_other]
 hashtag = #upc2
 server = http://${hosts:main}:${ports:nginx}
 oauth_server = ${hosts:oauth}
@@ -44,6 +44,7 @@ handlers = console
 level = INFO
 handlers = console
 qualname = maxtweety
+propagate=0
 
 [handler_console]
 class = StreamHandler

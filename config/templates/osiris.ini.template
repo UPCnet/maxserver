@@ -49,6 +49,7 @@ handlers = console
 level = WARN
 handlers =
 qualname = osiris
+propagate=0
 
 [handler_console]
 class = StreamHandler

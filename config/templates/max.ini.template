@@ -48,6 +48,7 @@ handlers = console
 level = WARN
 handlers =
 qualname = max
+propagate=0
 
 [logger_exceptions]
 level = DEBUG

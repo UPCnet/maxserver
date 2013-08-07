@@ -67,6 +67,7 @@ handlers = console
 level = WARN
 handlers =
 qualname = bigmax
+propagate=0
 
 [handler_console]
 class = StreamHandler

@@ -5,16 +5,21 @@ consumer_secret =
 access_token =
 access_token_secret =
 
+[general]
+config_directory = ${buildout:directory}/config/
+
 [rabbitmq]
 server = ${hosts:main}
 
 [max:default]
+hashtag = #upc
 server = http://${hosts:main}:${ports:nginx}
 oauth_server = ${hosts:oauth}
 max.talk_server = ${hosts:maxtalk}
 config_directory = ${buildout:directory}/config/
 
 [max:other]
+hashtag = #upc2
 server = http://${hosts:main}:${ports:nginx}
 oauth_server = ${hosts:oauth}
 max.talk_server = ${hosts:maxtalk}

@@ -8,6 +8,24 @@ oauth_server = ${hosts:oauth}
 max.talk_server = ${hosts:maxtalk}
 config_directory = ${buildout:directory}/config/
 
+[push]
+push_certificate_file = ${buildout:directory}/config/apns-production.pem
+
+[max_default]
+hashtag = #upc
+server = http://${hosts:main}:${ports:nginx}
+oauth_server = ${hosts:oauth}
+max.talk_server = ${hosts:maxtalk}
+config_directory = ${buildout:directory}/config/
+
+[max_other]
+hashtag = #upc2
+server = http://${hosts:main}:${ports:nginx}
+oauth_server = ${hosts:oauth}
+max.talk_server = ${hosts:maxtalk}
+config_directory = ${buildout:directory}/config/
+
+# Used by the RabbitMQ initializator script only
 [mongodb]
 mongodb.url = mongodb://${hosts-extra:mongo}
 mongodb.db_name = max
@@ -15,20 +33,16 @@ mongodb.cluster = false
 mongodb.hosts = ${hosts:mongodb}
 mongodb.replica_set = maxcluster
 
-[push]
-push_certificate_file = ${buildout:directory}/config/apns-production.pem
-
-
 # Begin logging configuration
 
 [loggers]
-keys = root, maxbunny
+keys = root, maxbunny, push, tweety
 
 [handlers]
-keys = console
+keys = console, conclean
 
 [formatters]
-keys = generic
+keys = generic, clean
 
 [logger_root]
 level = WARN
@@ -38,13 +52,31 @@ handlers = console
 level = INFO
 handlers = console
 qualname = maxbunny
-propagate=0
+propagate = 0
+
+[logger_push]
+level = INFO
+handlers = conclean
+qualname = push
+propagate = 0
+
+[logger_tweety]
+level = INFO
+handlers = conclean
+qualname = tweety
+propagate = 0
 
 [handler_console]
 class = StreamHandler
 args = (sys.stderr,)
 level = NOTSET
 formatter = generic
+
+[handler_conclean]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = clean
 
 [handler_maxbunny]
 level = INFO
@@ -55,4 +87,6 @@ formatter = generic
 [formatter_generic]
 format = %(levelname) -10s %(asctime)s %(name) -10s %(funcName) -35s %(lineno) -5d: %(message)s
 
+[formatter_clean]
+format = %(asctime)s %(message)s
 # End logging configuration

@@ -59,6 +59,6 @@ args = ('${buildout:directory}/var/log/maxtweety.log', 'a')
 formatter = generic
 
 [formatter_generic]
-format = %(levelname) -10s %(asctime)s %(name) -10s %(funcName) -35s %(lineno) -5d: %(message)s
+format = %(asctime)s %(message)s
 
 # End logging configuration

@@ -4,6 +4,7 @@ import sys
 
 NGINX_CONF_FILE = 'config/nginx.conf'
 BIGMAX_CONF_FILE = 'config/bigmax.ini'
+MAX_CONF_FILE = 'config/max.ini'
 MAX_SETTINGS_FILE = '.max_settings'
 SUPERVISOR_FILE = 'parts/supervisor/supervisord.conf'
 
@@ -16,11 +17,17 @@ if enable:
     subst = re.sub(r'#SSL#', '', nginx)
     open(NGINX_CONF_FILE, 'w').write(subst)
 
-    # Enable MAX SSL parameters
-    maxx = open(BIGMAX_CONF_FILE).read()
-    subst = re.sub(r'\n\s*max\.(talk|server).*?\n', '\n', maxx)
+    # Enable BIGMAX SSL parameters
+    bigmaxx = open(BIGMAX_CONF_FILE).read()
+    subst = re.sub(r'\n\s*max\.(talk|server).*?\n', '\n', bigmaxx)
     subst = re.sub(r'#SSL#', '', subst)
     open(BIGMAX_CONF_FILE, 'w').write(subst)
+
+    # Enable MAX SSL parameters
+    maxx = open(MAX_CONF_FILE).read()
+    subst = re.sub(r'\n\s*max\.(talk|server).*?\n', '\n', maxx)
+    subst = re.sub(r'#SSL#', '', subst)
+    open(MAX_CONF_FILE, 'w').write(subst)
 
     # Enable MAXSETTINGS SSL parameters
     maxsettings = open(MAX_SETTINGS_FILE).read()

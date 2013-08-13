@@ -1,25 +1,27 @@
-# Used for rabbitMQ consumers and scripts
+# Used for rabbitMQ publishers, consumers and scripts
 [rabbitmq]
 server = ${hosts:main}
 
-[max]
-server = http://${hosts:main}:${ports:nginx}
-oauth_server = ${hosts:oauth}
-max.talk_server = ${hosts:maxtalk}
-config_directory = ${buildout:directory}/config/
+[twitter]
+consumer_key =
+consumer_secret =
+access_token =
+access_token_secret =
 
 [push]
 push_certificate_file = ${buildout:directory}/config/apns-production.pem
 
 [max_default]
-hashtag = #upc
+# Global hashtag with no #
+hashtag = upc
 server = http://${hosts:main}:${ports:nginx}
 oauth_server = ${hosts:oauth}
 max.talk_server = ${hosts:maxtalk}
 config_directory = ${buildout:directory}/config/
 
 [max_other]
-hashtag = #upc2
+# Global hashtag with no #
+hashtag = upc2
 server = http://${hosts:main}:${ports:nginx}
 oauth_server = ${hosts:oauth}
 max.talk_server = ${hosts:maxtalk}
@@ -36,7 +38,7 @@ mongodb.replica_set = maxcluster
 # Begin logging configuration
 
 [loggers]
-keys = root, maxbunny, push, tweety
+keys = root, bunny, push, tweety
 
 [handlers]
 keys = console, conclean
@@ -48,10 +50,10 @@ keys = generic, clean
 level = WARN
 handlers = console
 
-[logger_maxbunny]
+[logger_bunny]
 level = INFO
 handlers = console
-qualname = maxbunny
+qualname = bunny
 propagate = 0
 
 [logger_push]
@@ -78,10 +80,16 @@ args = (sys.stderr,)
 level = NOTSET
 formatter = clean
 
-[handler_maxbunny]
+[handler_bunny]
 level = INFO
 class = FileHandler
 args = ('${buildout:directory}/var/log/maxbunny.log', 'a')
+formatter = generic
+
+[handler_tweety]
+level = INFO
+class = FileHandler
+args = ('${buildout:directory}/var/log/maxtweety.log', 'a')
 formatter = generic
 
 [formatter_generic]

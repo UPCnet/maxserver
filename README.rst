@@ -19,20 +19,40 @@ Steps to succesfully deploy a max locally
 
     $ python bootstrap.py
     $ ./bin/buildout
- 
+
 * Start supervisor::
 
     $ ./bin/supervisord
 
-* Create initial security settings::
+* Create initial persistent security settings::
 
     $ ./bin/initialize_max_db config/max.ini
     Created default security info in MAXDB.\n"
     Remember to restart max process!
 
-* Create initial cloudapis settings::
+* Create initial persistent cloudapis settings, this is the .ini format needed::
 
-    $ ./bin/max.cloudapis -c twitter.cfg
+    [twitter]
+    consumer_key =
+    consumer_secret =
+    access_token =
+    access_token_secret =
+
+    [mongodb]
+    cluster = false
+    standaloneserver = localhost
+    clustermembers =
+    dbname = {max|tests}
+    replicaset =
+
+.. note::
+
+    If you are going to run tests (and you are), remember to load the settings
+    either for the dbname of the max server and the *tests* database.
+
+and the command line to load them into the MAX database::
+
+    $ ./bin/max.cloudapis -c twitter.ini
     Created cloudapis info in MAXDB.\n"
     Remember to restart max process!
 
@@ -49,6 +69,21 @@ Steps to succesfully deploy a max locally
 
     $ ./bin/maxdevel add user your.name
     Done.
+
+* Initialize the restricted user for use of daemon scripts (Tweety and
+  Push/Tweety consumers) server settings by running::
+
+    $ ./bin/max.setrestricted -c config/max.ini
+
+* Initialize the RabbitMQ server settings by running::
+
+    $ ./bin/max.rabbit -c config/max.ini
+
+this command takes a standard max config .ini as configuration settings. This is
+intended to run once in a production server or as many times as needed on
+development. It creates the default artifacts in RabbitMQ server and it will
+also syncronize the existing conversations in the max server with the
+correspondant exchanges in the RabbitMQ server.
 
 Extra steps
 -----------

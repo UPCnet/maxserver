@@ -8,7 +8,10 @@ pyramid.debug_templates = ${max:development}
 pyramid.default_locale_name = en
 pyramid.includes = pyramid_tm
 
-max.server_id = maxtest
+max.server_id = max_default
+max.server = http://${hosts:main}:${ports:nginx}
+#SSL#max.server = https://${hosts:main}
+max.oauth_server = ${hosts:oauth}
 max.oauth_check_endpoint = ${hosts:oauth}/checktoken
 max.oauth_standard = true
 max.talk_server = ${hosts:maxtalk}
@@ -20,6 +23,7 @@ mongodb.db_name = max
 max.debug_api = false
 max.oauth_passtrough = false
 avatar_folder = ${buildout:directory}/var/avatars
+config_directory = ${buildout:directory}/config/
 
 mongodb.cluster = false
 mongodb.hosts = ${hosts:mongodb}

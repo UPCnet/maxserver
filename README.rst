@@ -39,16 +39,17 @@ Steps to succesfully deploy a max locally
     access_token_secret =
 
     [mongodb]
-    cluster = false
-    standaloneserver = localhost
-    clustermembers =
-    dbname = {max|tests}
-    replicaset =
+    mongodb.cluster = false
+    mongodb.url = localhost
+    mongodb.hosts =
+    mongodb.db_name = {max|tests}
+    mongodb.replica_set =
 
 .. note::
 
     If you are going to run tests (and you are), remember to load the settings
-    either for the dbname of the max server and the *tests* database.
+    either for the dbname of the max server and the *tests* database. You can
+    supply the unified maxbunny.ini like file.
 
 and the command line to load them into the MAX database::
 

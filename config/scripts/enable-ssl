@@ -25,7 +25,7 @@ if enable:
 
     # Enable MAX SSL parameters
     maxx = open(MAX_CONF_FILE).read()
-    subst = re.sub(r'\n\s*max\.(talk|server).*?\n', '\n', maxx)
+    subst = re.sub(r'\n\s*max\.(server).*?\n', '\n', maxx)
     subst = re.sub(r'#SSL#', '', subst)
     open(MAX_CONF_FILE, 'w').write(subst)
 

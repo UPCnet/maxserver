@@ -26,7 +26,7 @@ Steps to succesfully deploy a max locally
 
     $ ./bin/supervisord
 
-* Create initial persistent security settings::
+* Define the users you want to set as initial administators on file ``config/.authorized_users`` and then, create initial persistent security settings::
 
     $ ./bin/initialize_max_db config/max.ini
     Created default security info in MAXDB.\n"

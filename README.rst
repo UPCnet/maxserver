@@ -9,11 +9,13 @@ Steps to succesfully deploy a max locally
 
     apt-get install zlib1g-dev build-essential libldap2-dev libsasl2-dev
     libreadline6-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libssl-dev
-    tk-dev libgdbm-dev libc6-dev libbz2-dev libxslt1-dev libpcre3-dev
+    tk-dev libgdbm-dev libc6-dev libbz2-dev libxslt1-dev libpcre3-dev libjpeg62-dev libzlcore-dev libfreetype6-dev erlang
 
 * Install OSX dependencies::
 
     brew install pcre
+
+* Check erlang version by executing ``erl -version``. You need erlang at least 5.10.2 R16B01. If you can't get it from your distribution, get the latest erlang and build it from sources following instructions from http://www.erlang.org/doc/installation_guide/INSTALL.html#Required-Utilities_Unpacking
 
 * Bootstrap and execute buildout::
 

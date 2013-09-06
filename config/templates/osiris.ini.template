@@ -1,16 +1,16 @@
 [app:main]
 use = egg:osiris
 
-pyramid.reload_templates = false
+pyramid.reload_templates = ${max:development}
 pyramid.debug_authorization = false
 pyramid.debug_notfound = false
 pyramid.debug_routematch = false
-pyramid.debug_templates = false
+pyramid.debug_templates = ${max:development}
 pyramid.default_locale_name = en
 
 osiris.store = osiris.store.mongodb_store
-osiris.store.host = localhost
-osiris.store.port = 27017
+osiris.store.host = ${hosts:mongodb}
+osiris.store.port = ${ports:mongodb}
 osiris.store.db = osiris
 osiris.store.collection = tokens
 osiris.tokenexpiry = 0

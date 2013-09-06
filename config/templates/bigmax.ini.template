@@ -40,7 +40,7 @@ cache.default_term.expire = 300
 cache.long_term.expire = 3600
 
 #to erradicate
-mongodb.url = mongodb://${hosts-extra:mongo}
+mongodb.url = mongodb://${hosts-extra:mongo}:${ports:mongodb}
 mongodb.db_name = max
 
 [server:main]

@@ -29,7 +29,7 @@ config_directory = ${buildout:directory}/config/
 
 # Used by the RabbitMQ initializator script only
 [mongodb]
-mongodb.url = mongodb://${hosts-extra:mongo}
+mongodb.url = mongodb://${hosts-extra:mongo}:${ports:mongodb}
 mongodb.db_name = max
 mongodb.cluster = false
 mongodb.hosts = ${hosts:mongodb}

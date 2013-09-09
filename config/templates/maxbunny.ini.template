@@ -16,7 +16,7 @@ push_certificate_file = ${buildout:directory}/config/apns-production.pem
 hashtag = upc
 server = http://${hosts:main}:${ports:nginx}
 oauth_server = ${hosts:oauth}
-max.talk_server = ${hosts:maxtalk}
+max.rabbitmq = ${hosts:rabbitmq}:${ports:rabbitmq}
 config_directory = ${buildout:directory}/config/
 
 [max_other]
@@ -24,7 +24,7 @@ config_directory = ${buildout:directory}/config/
 hashtag = upc2
 server = http://${hosts:main}:${ports:nginx}
 oauth_server = ${hosts:oauth}
-max.talk_server = ${hosts:maxtalk}
+max.rabbitmq = ${hosts:rabbitmq}:${ports:rabbitmq}
 config_directory = ${buildout:directory}/config/
 
 # Used by the RabbitMQ initializator script only

@@ -1,5 +1,7 @@
 [
   {rabbit, [{auth_backends, [rabbit_auth_backend_http,rabbit_auth_backend_internal]}]},
+  {rabbitmq_management, [{listener, [{port, ${ports:rabbitmq-manage}}]}]},
+  {rabbitmq_stomp, [{tcp_listeners, [${ports:rabbitmq-stomp}]}]}
   {rabbitmq_auth_backend_http,
    [{user_path,     "http://${hosts:max}:${ports:max}/auth/user"},
     {vhost_path,    "http://${hosts:max}:${ports:max}/auth/vhost"},

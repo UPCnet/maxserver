@@ -32,7 +32,7 @@ Steps to succesfully deploy a max locally
     Created default security info in MAXDB.\n"
     Remember to restart max process!
 
-* Create initial persistent cloudapis settings, this is the .ini format needed::
+* Fill the twitter settings for your twitter user in ``config/maxbunny.ini``. The section looks like::
 
     [twitter]
     consumer_key =
@@ -40,18 +40,11 @@ Steps to succesfully deploy a max locally
     access_token =
     access_token_secret =
 
-    [mongodb]
-    mongodb.cluster = false
-    mongodb.url = localhost
-    mongodb.hosts =
-    mongodb.db_name = {max|tests}
-    mongodb.replica_set =
-
 .. note::
 
     If you are going to run tests (and you are), remember to load the settings
     either for the dbname of the max server and the *tests* database. You can
-    supply the unified maxbunny.ini like file.
+    supply the unified maxbunny.ini file, executing it twice, each time with a different db name.
 
 and the command line to load them into the MAX database::
 
@@ -115,6 +108,13 @@ Considerations using the development version widget
         $ ./bin/max.devel add subscription user.name http://contexturi
 
 * If you run buildout again, you have to run ``maxui.setup``script again. Any changes will be lost.
+
+Ports used by processes
+-----------------------
+
+* Command to see which ports a process is listening to::
+
+    $ sudo netstat --numeric --numeric-hosts --all --program | grep PID
 
 
 Troubleshooting

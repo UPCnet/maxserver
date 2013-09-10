@@ -15,7 +15,7 @@ Steps to succesfully deploy a max locally
 
     brew install pcre
 
-* Check erlang version by executing ``erl -version``. You need erlang at least 5.10.2 R16B01. If you can't get it from your distribution, get the latest erlang and build it from sources following instructions from http://www.erlang.org/doc/installation_guide/INSTALL.html#Required-Utilities_Unpacking
+* Check erlang version by executing ``erl -version``. You need erlang at least 5.10.2 R16B01. If you can't get it from your distribution, get the latest erlang and build it from sources following instructions from http://www.erlang.org/doc/installation_guide/INSTALL.html#Required-Utilities_Unpackingn
 
 * Bootstrap and execute buildout::
 
@@ -55,7 +55,7 @@ Steps to succesfully deploy a max locally
 
 and the command line to load them into the MAX database::
 
-    $ ./bin/max.cloudapis -c twitter.ini
+    $ ./bin/max.cloudapis -c maxbunny.ini
     Created cloudapis info in MAXDB.\n"
     Remember to restart max process!
 

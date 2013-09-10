@@ -4,6 +4,7 @@ BUILDOUT_DIR="${buildout:directory}"
 RABBITMQ_HOME="${rabbitmq:home}"
 SCRIPT_DIR="${rabbitmq:scripts}}"
 NODENAME="${rabbitmq:nodename}"
+NODE_PORT=${ports:rabbitmq}
 
 ## Set defaults
 . ${rabbitmq:scripts}/rabbitmq-defaults

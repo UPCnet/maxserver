@@ -15,6 +15,7 @@ max.oauth_server = ${hosts:oauth}
 max.oauth_check_endpoint = ${hosts:oauth}/checktoken
 max.oauth_standard = ${max:use_osiris}
 max.rabbitmq = ${hosts:rabbitmq}:${ports:rabbitmq}
+max.rabbitmq-manage = ${ports:rabbitmq-manage}
 cache.regions = oauth_token
 cache.type = memory
 cache.oauth_token.expire = 60

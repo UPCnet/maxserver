@@ -19,9 +19,9 @@ max.oauth_grant_type = password
 max.oauth_clientid = MAX
 max.oauth_scope = widgetcli
 max.server = http://${hosts:main}:${ports:nginx}
-max.talk = http://${hosts:main}:${ports:nginx}/stomp
+max.stomp = http://${hosts:main}:${ports:nginx}/stomp
 #SSL#max.server = https://${hosts:main}
-#SSL#max.talk = https://${hosts:main}/stomp
+#SSL#max.stomp = https://${hosts:main}/stomp
 max.ops_username = operations
 max.ops_password = operations
 

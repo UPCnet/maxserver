@@ -19,13 +19,14 @@ if enable:
 
     # Enable BIGMAX SSL parameters
     bigmaxx = open(BIGMAX_CONF_FILE).read()
-    subst = re.sub(r'\n\s*max\.(talk|server).*?\n', '\n', bigmaxx)
+    subst = re.sub(r'(\n\s*max\.server\s*=.*?\n)', '\n', bigmaxx)
+    subst = re.sub(r'(\n\s*max\.stomp\s*=.*?\n)', '\n', subst)
     subst = re.sub(r'#SSL#', '', subst)
     open(BIGMAX_CONF_FILE, 'w').write(subst)
 
     # Enable MAX SSL parameters
     maxx = open(MAX_CONF_FILE).read()
-    subst = re.sub(r'\n\s*max\.(server).*?\n', '\n', maxx)
+    subst = re.sub(r'(\n\s*max\.server\s*=.*?\n)', '\n', maxx)
     subst = re.sub(r'#SSL#', '', subst)
     open(MAX_CONF_FILE, 'w').write(subst)
 
@@ -38,10 +39,8 @@ if enable:
     supervisor = open(SUPERVISOR_FILE).read()
     supervisor = re.sub(r'\[program:max\]\s*\n*\s*command\s*=\s*(.*?)\n', r'[program:max]\ncommand = \1 --user pyramid\n',  supervisor)
     supervisor = re.sub(r'\[program:bigmax\]\s*\n*\s*command\s*=\s*(.*?)\n', r'[program:bigmax]\ncommand = \1 --user pyramid\n',  supervisor)
-    supervisor = re.sub(r'\[program:maxtalk\]\s*\n*\s*command\s*=\s*(.*?)\n', r'[program:maxtalk]\ncommand = \1 --user pyramid\n',  supervisor)
 
     open(SUPERVISOR_FILE, 'w').write(supervisor)
 
     print ' ** SSL Enabled **'
     print ' ** Change file ownership to pyramid and restart supervisor as root **'
-

@@ -5,6 +5,7 @@ import sys
 NGINX_CONF_FILE = 'config/nginx.conf'
 BIGMAX_CONF_FILE = 'config/bigmax.ini'
 MAX_CONF_FILE = 'config/max.ini'
+MAX_CONF_FILE = 'config/maxbunny.ini'
 MAX_SETTINGS_FILE = '.max_settings'
 SUPERVISOR_FILE = 'parts/supervisor/supervisord.conf'
 
@@ -27,6 +28,12 @@ if enable:
     # Enable MAX SSL parameters
     maxx = open(MAX_CONF_FILE).read()
     subst = re.sub(r'(\n\s*max\.server\s*=.*?\n)', '\n', maxx)
+    subst = re.sub(r'#SSL#', '', subst)
+    open(MAX_CONF_FILE, 'w').write(subst)
+
+    # Enable MAXBUNNY SSL parameters
+    maxx = open(MAX_CONF_FILE).read()
+    subst = re.sub(r'(\n\s*max.server\s*=.*?\n)', '\n', maxx)
     subst = re.sub(r'#SSL#', '', subst)
     open(MAX_CONF_FILE, 'w').write(subst)
 

@@ -1,6 +1,6 @@
 # Used for rabbitMQ publishers, consumers and scripts
 [rabbitmq]
-server = ${hosts:main}
+server = amqp://guest:guest@${hosts:rabbitmq}:${ports:rabbitmq}/%2F
 
 [twitter]
 consumer_key =
@@ -15,16 +15,16 @@ push_certificate_file = ${buildout:directory}/config/apns-production.pem
 # Global hashtag with no #
 hashtag = upc
 server = http://${hosts:main}:${ports:nginx}
+#SSL#server = https://${hosts:main}
 oauth_server = ${hosts:oauth}
-max.rabbitmq = ${hosts:rabbitmq}:${ports:rabbitmq}
 config_directory = ${buildout:directory}/config/
 
 [max_other]
 # Global hashtag with no #
 hashtag = upc2
 server = http://${hosts:main}:${ports:nginx}
+#SSL#server = https://${hosts:main}
 oauth_server = ${hosts:oauth}
-max.rabbitmq = ${hosts:rabbitmq}:${ports:rabbitmq}
 config_directory = ${buildout:directory}/config/
 
 # Used by the RabbitMQ initializator script only

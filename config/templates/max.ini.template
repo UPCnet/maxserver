@@ -8,7 +8,7 @@ pyramid.debug_templates = ${max:development}
 pyramid.default_locale_name = en
 pyramid.includes = pyramid_tm
 
-max.server_id = max_default
+max.server_id = ${hosts:name}
 max.server = ${urls:max}
 max.oauth_server = ${urls:oauth}
 max.oauth_check_endpoint = ${urls:oauth}/checktoken

@@ -19,7 +19,7 @@ stderr_stream.refresh_time = 0.3
 
 [socket:max]
 host = 0.0.0.0
-port = 6543
+port = ${ports:max}
 
 [watcher:bigmax]
 cmd = ${buildout:directory}/bin/chaussette --fd $(circus.sockets.bigmax) --backend gevent paste:${buildout:directory}/config/bigmax.ini
@@ -32,4 +32,4 @@ stderr_stream.refresh_time = 0.3
 
 [socket:bigmax]
 host = 0.0.0.0
-port = 6544
+port = ${ports:bigmax}

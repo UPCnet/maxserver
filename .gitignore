@@ -37,7 +37,7 @@ nosetests.xml
 .project
 .pydevproject
 
-
+config/mongodb.conf
 config/redis.conf
 config/config.js
 config/nginx*

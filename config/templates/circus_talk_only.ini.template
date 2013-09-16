@@ -1,0 +1,20 @@
+[circus]
+check_delay = 5
+endpoint = tcp://127.0.0.1:5555
+pubsub_endpoint = tcp://127.0.0.1:5556
+stats_endpoint = tcp://127.0.0.1:5557
+
+httpd = True
+httpd_host = ${hosts:main}
+httpd_port = ${ports:circus}
+
+[watcher:mongodb]
+cmd = ${buildout:directory}/bin/mongod
+args = --config ${buildout:directory}/config/mongodb.conf
+
+[watcher:rabbitmq]
+cmd = ${buildout:directory}/bin/rabbitmq-server
+copy_env = true
+
+[env:rabbitmq]
+HOME = /var/osom/utalk.upcnet.es/

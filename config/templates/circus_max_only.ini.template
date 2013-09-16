@@ -1,0 +1,44 @@
+[circus]
+check_delay = 5
+endpoint = tcp://127.0.0.1:5555
+pubsub_endpoint = tcp://127.0.0.1:5556
+stats_endpoint = tcp://127.0.0.1:5557
+
+httpd = True
+httpd_host = ${hosts:main}
+httpd_port = ${ports:circus}
+
+[watcher:mongodb]
+cmd = ${buildout:directory}/bin/mongod
+args = --config ${buildout:directory}/config/mongodb.conf
+
+[watcher:max]
+cmd = ${buildout:directory}/bin/chaussette --fd $(circus.sockets.max) --backend gevent paste:${buildout:directory}/config/max.ini
+use_sockets = True
+numprocesses = 1
+
+stderr_stream.class = FileStream
+stderr_stream.filename = ${buildout:directory}/var/log/max.log
+stderr_stream.refresh_time = 0.3
+
+[socket:max]
+host = 0.0.0.0
+port = 6543
+
+[watcher:bigmax]
+cmd = ${buildout:directory}/bin/chaussette --fd $(circus.sockets.bigmax) --backend gevent paste:${buildout:directory}/config/bigmax.ini
+use_sockets = True
+numprocesses = 1
+
+stderr_stream.class = FileStream
+stderr_stream.filename = ${buildout:directory}/var/log/bigmax.log
+stderr_stream.refresh_time = 0.3
+
+[socket:bigmax]
+host = 0.0.0.0
+port = 6544
+
+[watcher:maxrules]
+cmd = ${buildout:directory}/bin/maxrules.twitter
+args = -c ${buildout:directory}/twitter.cfg
+autostart = false

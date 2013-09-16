@@ -8,7 +8,7 @@ pyramid.debug_templates = ${max:development}
 pyramid.default_locale_name = en
 pyramid.includes = pyramid_tm
 
-max.server_id = ${hosts:name}
+max.server_id = ${max:name}
 max.server = ${urls:max}
 max.oauth_server = ${urls:oauth}
 max.oauth_check_endpoint = ${urls:oauth}/checktoken
@@ -24,7 +24,7 @@ avatar_folder = ${buildout:directory}/var/avatars
 config_directory = ${buildout:directory}/config/
 
 mongodb.url = ${urls:mongo}
-mongodb.db_name = max
+mongodb.db_name = ${max:name}
 mongodb.cluster = false
 mongodb.hosts = ${hosts:mongodb_cluster}
 mongodb.replica_set = maxcluster

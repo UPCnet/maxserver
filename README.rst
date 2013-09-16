@@ -19,8 +19,8 @@ Steps to succesfully deploy a max locally
 
 * Bootstrap and execute buildout::
 
-    $ python bootstrap.py
-    $ ./bin/buildout
+    $ python bootstrap.py -c devel.cfg
+    $ ./bin/buildout -c devel.cfg
 
 * Start supervisor::
 
@@ -48,7 +48,7 @@ Steps to succesfully deploy a max locally
 
 and the command line to load them into the MAX database::
 
-    $ ./bin/max.cloudapis -c maxbunny.ini
+    $ ./bin/max.cloudapis -c config/maxbunny.ini
     Created cloudapis info in MAXDB.\n"
     Remember to restart max process!
 
@@ -83,11 +83,6 @@ correspondant exchanges in the RabbitMQ server.
 
 Extra steps
 -----------
-
-* If you want to enable SSL, you first have to:
-    - set ``enable-ssl`` variable in ``[nginx-config]`` section to ``true``
-    - set ``nginx`` variable in ``[ports]`` section to ``443``
-    - remove ``parts/supervisor/supervisord.conf`` and re-run buildout
 
 * If you are setting up a SSL production environment, also:
     - set certificate file locations in ``[nginx-config]`` section

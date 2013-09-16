@@ -9,13 +9,12 @@ pyramid.default_locale_name = en
 pyramid.includes = pyramid_tm
 
 max.server_id = max_default
-max.server = http://${hosts:main}:${ports:nginx}
-#SSL#max.server = https://${hosts:main}
-max.oauth_server = ${hosts:oauth}
-max.oauth_check_endpoint = ${hosts:oauth}/checktoken
+max.server = ${urls:max}
+max.oauth_server = ${urls:oauth}
+max.oauth_check_endpoint = ${urls:oauth}/checktoken
 max.oauth_standard = ${max:use_osiris}
-max.rabbitmq = amqp://guest:guest@${hosts:rabbitmq}:${ports:rabbitmq}/%2F
-max.rabbitmq-manage = http://${hosts:rabbitmq}:${ports:rabbitmq-manage}
+max.rabbitmq = ${urls:rabbitmq}
+max.rabbitmq-manage = ${urls:rabbit-manage}
 cache.regions = oauth_token
 cache.type = memory
 cache.oauth_token.expire = 60
@@ -24,15 +23,15 @@ max.oauth_passtrough = ${max:oauth_passtrough}
 avatar_folder = ${buildout:directory}/var/avatars
 config_directory = ${buildout:directory}/config/
 
-mongodb.url = mongodb://${hosts-extra:mongo}:${ports:mongodb}
+mongodb.url = ${urls:mongo}
 mongodb.db_name = max
 mongodb.cluster = false
-mongodb.hosts = ${hosts:mongodb}
+mongodb.hosts = ${hosts:mongodb_cluster}
 mongodb.replica_set = maxcluster
 
 [server:main]
 use = egg:waitress#main
-host = ${hosts:main}
+host = ${hosts:max}
 port = ${ports:max}
 
 # Begin logging configuration

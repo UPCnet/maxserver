@@ -16,7 +16,7 @@ osiris.store.collection = tokens
 osiris.tokenexpiry = 0
 
 osiris.mongodb.cluster = false
-osiris.mongodb.hosts = ${hosts:mongodb}
+osiris.mongodb.hosts = ${hosts:mongodb_cluster}
 osiris.mongodb.replica_set = maxcluster
 osiris.mongodb.use_greenlets = false
 

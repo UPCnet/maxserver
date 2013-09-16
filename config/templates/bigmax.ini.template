@@ -44,7 +44,7 @@ mongodb.db_name = max
 
 [server:main]
 use = egg:waitress#main
-host = ${hosts:max}
+host = 0.0.0.0
 port = ${ports:bigmax}
 
 # Begin logging configuration

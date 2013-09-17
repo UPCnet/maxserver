@@ -24,7 +24,7 @@ avatar_folder = ${buildout:directory}/var/avatars
 config_directory = ${buildout:directory}/config/
 
 mongodb.url = ${urls:mongo}
-mongodb.db_name = ${max:name}
+mongodb.db_name = max_${max:name}
 mongodb.cluster = ${max:cluster_enabled}
 mongodb.hosts = ${hosts:mongodb_cluster}
 mongodb.replica_set = maxcluster

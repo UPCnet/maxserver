@@ -11,18 +11,18 @@ pyramid.default_locale_name = en
 osiris.store = osiris.store.mongodb_store
 osiris.store.host = ${hosts:mongodb}
 osiris.store.port = ${ports:mongodb}
-osiris.store.db = osiris
+osiris.store.db = osiris_${max:name}
 osiris.store.collection = tokens
 osiris.tokenexpiry = 0
 
-osiris.mongodb.cluster = false
+osiris.mongodb.cluster = ${max:cluster_enabled}
 osiris.mongodb.hosts = ${hosts:mongodb_cluster}
 osiris.mongodb.replica_set = maxcluster
-osiris.mongodb.use_greenlets = false
+osiris.mongodb.use_greenlets = ${osiris:use_greenlets}
 
 osiris.whoconfig = %(here)s/osiris-who.ini
 # Check README instructions if you want to enable LDAP auth backend
-osiris.ldap_enabled = false
+osiris.ldap_enabled = ${osiris:ldap_enabled}
 osiris.ldapconfig = %(here)s/ldap.ini
 
 [server:main]

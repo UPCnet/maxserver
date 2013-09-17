@@ -8,9 +8,6 @@ httpd = True
 httpd_host = ${hosts:main}
 httpd_port = ${ports:circus}
 
-[watcher:rabbitmq]
-cmd = ${buildout:directory}/bin/rabbitmq-server
-copy_env = true
-
-[env:rabbitmq]
-HOME = /var/osom/utalk.upcnet.es/
+[watcher:mongodb]
+cmd = ${buildout:directory}/bin/mongod
+args = --config ${buildout:directory}/config/mongodb.conf

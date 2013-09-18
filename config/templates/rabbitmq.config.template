@@ -13,9 +13,9 @@
         {port, ${ports:rabbitmq-web-stomp}}
     ]},
     {rabbitmq_auth_backend_http, [
-        {user_path,     "${urls:max}/auth/user"},
-        {vhost_path,    "${urls:max}/auth/vhost"},
-        {resource_path, "${urls:max}/auth/resource"}
+        {user_path,     "http://${hosts:max}:${ports:max}/auth/user"},
+        {vhost_path,    "http://${hosts:max}:${ports:max}/auth/vhost"},
+        {resource_path, "http://${hosts:max}:${ports:max}/auth/resource"}
     ]},
     {rabbit, [
         {tcp_listeners, [${ports:rabbitmq}]}

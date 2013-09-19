@@ -108,7 +108,7 @@ http {
   }
 
   upstream rabbitmq_web_stomp_server {
-    server ${hosts:main}:${ports:rabbitmq-web-stomp} fail_timeout=0;
+    server ${hosts:rabbitmq}:${ports:rabbitmq-web-stomp} fail_timeout=0;
   }
 
   server {

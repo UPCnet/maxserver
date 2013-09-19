@@ -96,6 +96,9 @@ http {
   gzip_disable        "MSIE [1-6]\.";
   gzip_vary           on;
 
+  # Allow to directly stream medium size files (static resources directly from the upstream server without buffering
+  proxy_buffers              4 32k;
+
   upstream max_server {
     server ${hosts:main}:${ports:max} fail_timeout=0;
   }

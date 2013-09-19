@@ -145,6 +145,8 @@ http {
         proxy_pass   http://osiris_server;
     }
 
+    # Include locations for oauth instances
+    include /var/nginx/config/instances.conf;
   }
 
   # Include other virtualhosts

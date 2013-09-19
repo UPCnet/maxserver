@@ -196,4 +196,6 @@ http {
 
   }
 
+  # Include other virtualhosts
+  include /var/nginx/config/sites-enabled/*;
 }

@@ -149,6 +149,9 @@ http {
     ###############################################################
     # Finally, the location of the application
 
+    # Include locations for oauth instances
+    include ${buildout:directory}/config/max-instances.conf;
+
     location / {
 
         # CORS PreFlight
@@ -194,8 +197,6 @@ http {
         proxy_pass   http://max_server;
     }
 
-    # Include locations for oauth instances
-    include ${buildout:directory}/config/max-instances.conf;
   }
 
   # Include other virtualhosts

@@ -194,8 +194,10 @@ http {
         proxy_pass   http://max_server;
     }
 
+    # Include locations for oauth instances
+    include ${buildout:directory}/config/max-instances.conf;
   }
 
   # Include other virtualhosts
-  include /var/nginx/config/sites-enabled/*;
+  include ${buildout:directory}/config/sites-enabled/*;
 }

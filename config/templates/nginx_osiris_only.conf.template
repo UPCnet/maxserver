@@ -146,9 +146,9 @@ http {
     }
 
     # Include locations for oauth instances
-    include /var/nginx/config/osiris-instances.conf;
+    include ${buildout:directory}/config/osiris-instances.conf;
   }
 
   # Include other virtualhosts
-  include /var/nginx/config/sites-enabled/*;
+  include ${buildout:directory}/config/sites-enabled/*;
 }

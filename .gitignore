@@ -5,6 +5,7 @@
 *.so
 
 # Packages
+.codeintel
 *.egg
 *.egg-info
 dist

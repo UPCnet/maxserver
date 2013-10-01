@@ -52,10 +52,6 @@ and the command line to load them into the MAX database::
     Created cloudapis info in MAXDB.\n"
     Remember to restart max process!
 
-* Restart max process to apply the new security settings::
-
-    $ ./bin/supervisorctl restart max
-
 * Initialize max.ui development widget base settings, it will ask for your credentials
   and store them in .max_settings::
 
@@ -63,7 +59,7 @@ and the command line to load them into the MAX database::
 
 * Add yourself to max::
 
-    $ ./bin/maxdevel add user your.name
+    $ ./bin/max.devel add user your.name
     Done.
 
 * Initialize the restricted user for use of daemon scripts (Tweety and
@@ -74,6 +70,11 @@ and the command line to load them into the MAX database::
 * Initialize the RabbitMQ server settings by running::
 
     $ ./bin/max.rabbit -c config/max.ini
+
+
+* Restart max process to apply all the changes::
+
+    $ ./bin/supervisorctl restart max
 
 this command takes a standard max config .ini as configuration settings. This is
 intended to run once in a production server or as many times as needed on

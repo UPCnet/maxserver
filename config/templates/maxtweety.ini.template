@@ -8,10 +8,10 @@ instances = ${buildout:directory}/config/instances.ini
 # Begin logging configuration
 
 [loggers]
-keys = root, tweety
+keys = root, tweety, twitterlistener
 
 [handlers]
-keys = console, conclean, tweety
+keys = console, conclean, tweety, twitterlistener
 
 [formatters]
 keys = generic, clean
@@ -22,8 +22,14 @@ handlers = console
 
 [logger_tweety]
 level = INFO
-handlers = conclean
+handlers = console, tweety
 qualname = tweety
+propagate = 0
+
+[logger_twitterlistener]
+level = INFO
+handlers = conclean, twitterlistener
+qualname = twitterlistener
 propagate = 0
 
 [handler_console]
@@ -43,6 +49,12 @@ level = INFO
 class = FileHandler
 args = ('${buildout:directory}/var/log/maxtweety.log', 'a')
 formatter = generic
+
+[handler_twitterlistener]
+level = INFO
+class = FileHandler
+args = ('${buildout:directory}/var/log/twitter-listener.log', 'a')
+formatter = clean
 
 [formatter_generic]
 format = %(levelname) -10s %(asctime)s %(name) -10s %(funcName) -35s %(lineno) -5d: %(message)s

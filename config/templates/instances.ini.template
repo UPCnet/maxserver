@@ -1,0 +1,7 @@
+[max_default]
+# Global hashtag with no #
+hashtag =
+server =
+oauth_server =
+restricted_user =
+restricted_user_token =

@@ -1,0 +1,6 @@
+port = 27017
+dbpath = ${buildout:directory}/var/data
+logpath = ${buildout:directory}/var/log/mongodb.log
+logappend = true
+directoryperdb = true
+rest = true

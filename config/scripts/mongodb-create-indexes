@@ -10,7 +10,16 @@ except:
     print 'Not enough arguments'
     sys.exit(1)
 
-conn = pymongo.Connection(mongourl)
+try:
+    conn = pymongo.Connection(mongourl)
+except:
+    print '********************************************************************************'
+    print '*                                                                              *'
+    print '*   MongoDB not running, start it and re-run buildout again to apply indexes.  *'
+    print '*                                                                              *'
+    print '********************************************************************************'
+    sys.exit(1)
+
 indexes_file = open(indexes).read()
 clean = re.sub(r'(?:^|\n)#+[^\n]*', r'', indexes_file)
 databases = re.findall(r'[^#].*?\[database:([\w\d]+)\]([^\[$]+)', clean, re.DOTALL)

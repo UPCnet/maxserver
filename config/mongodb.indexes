@@ -6,7 +6,7 @@
 ##   collection2:key.subkey
 ##
 
-[database:max]
+[database:max_default]
 
 users:username
 users:twitterUsername

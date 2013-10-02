@@ -32,25 +32,10 @@ Steps to succesfully deploy a max locally
     Created default security info in MAXDB.\n"
     Remember to restart max process!
 
-* Fill the twitter settings for your twitter user in ``config/maxbunny.ini``. The section looks like::
+* Create the file config/cloudapis.ini, and fill in the twitter settings for your twitter user, and the push settings. You can use the template in config/templates/cloudapis.ini.template to make a copy from. This is a manual opeation on purpose, to make sure this file won't be regenerated.
+Once filled, execute the following command::
 
-    [twitter]
-    consumer_key =
-    consumer_secret =
-    access_token =
-    access_token_secret =
-
-.. note::
-
-    If you are going to run tests (and you are), remember to load the settings
-    either for the dbname of the max server and the *tests* database. You can
-    supply the unified maxbunny.ini file, executing it twice, each time with a different db name.
-
-and the command line to load them into the MAX database::
-
-    $ ./bin/max.cloudapis -c config/maxbunny.ini
-    Created cloudapis info in MAXDB.\n"
-    Remember to restart max process!
+    $ ./bin/max.cloudapis -c config/common.ini -a config/cloudapis.ini
 
 * Initialize max.ui development widget base settings, it will ask for your credentials
   and store them in .max_settings::
@@ -82,12 +67,11 @@ development. It creates the default artifacts in RabbitMQ server and it will
 also syncronize the existing conversations in the max server with the
 correspondant exchanges in the RabbitMQ server.
 
-Extra steps
------------
+Enabling twitter service
+------------------------
 
-* If you are setting up a SSL production environment, also:
-    - set certificate file locations in ``[nginx-config]`` section
-    - set ``main`` variable in ``[hosts]`` section to your domain name
+* First you have to create a config/instances.ini file, you can use config/templates/instances.ini.template to copy from. The section name [max_xxxxxx], where xxxxx indicates the value of name in the [max] section of the buildout. can be repeated N times, one for each max that Tweety will be listening tweets for. If in development,  you can leave max_default as the only one.
+
 
 
 Considerations using the development version widget

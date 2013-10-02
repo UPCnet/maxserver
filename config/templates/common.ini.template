@@ -1,0 +1,10 @@
+# Information about the common running services to use
+[rabbitmq]
+server = ${urls:rabbit}
+
+[mongodb]
+url = ${urls:mongo}
+db_name = max_${max:name}
+cluster = ${max:cluster_enabled}
+hosts = ${hosts:mongodb_cluster}
+replica_set = maxcluster

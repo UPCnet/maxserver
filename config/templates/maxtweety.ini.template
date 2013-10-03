@@ -4,6 +4,7 @@
 common = ${buildout:directory}/config/common.ini
 cloudapis = ${buildout:directory}/config/cloudapis.ini
 instances = ${buildout:directory}/config/instances.ini
+minimum_restart_delay = 300
 
 # Begin logging configuration
 

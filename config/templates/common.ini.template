@@ -9,3 +9,9 @@ db_name = max_${max:name}
 cluster = ${max:cluster_enabled}
 hosts = ${hosts:mongodb_cluster}
 replica_set = maxcluster
+
+[max]
+server = ${urls:max}
+
+[oauth]
+server = ${urls:oauth}

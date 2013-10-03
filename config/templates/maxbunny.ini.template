@@ -8,10 +8,10 @@ instances = ${buildout:directory}/config/instances.ini
 # Begin logging configuration
 
 [loggers]
-keys = root, bunny, push
+keys = root, bunny, twitterprocessor, push
 
 [handlers]
-keys = console, conclean
+keys = console, conclean, bunny, twitterprocessor, push
 
 [formatters]
 keys = generic, clean
@@ -22,13 +22,19 @@ handlers = console
 
 [logger_bunny]
 level = INFO
-handlers = console
+handlers = console, bunny, push
 qualname = bunny
+propagate = 0
+
+[logger_twitterprocessor]
+level = INFO
+handlers = conclean, twitterprocessor
+qualname = twitterprocessor
 propagate = 0
 
 [logger_push]
 level = INFO
-handlers = conclean
+handlers = conclean, push
 qualname = push
 propagate = 0
 
@@ -49,6 +55,18 @@ level = INFO
 class = FileHandler
 args = ('${buildout:directory}/var/log/maxbunny.log', 'a')
 formatter = generic
+
+[handler_push]
+level = INFO
+class = FileHandler
+args = ('${buildout:directory}/var/log/push.log', 'a')
+formatter = generic
+
+[handler_twitterprocessor]
+level = INFO
+class = FileHandler
+args = ('${buildout:directory}/var/log/twitter-processor.log', 'a')
+formatter = clean
 
 [formatter_generic]
 format = %(levelname) -10s %(asctime)s %(name) -10s %(funcName) -35s %(lineno) -5d: %(message)s

@@ -1,6 +1,7 @@
 # Information about the common running services to use
 [rabbitmq]
 server = ${urls:rabbit}
+manage = ${urls:rabbit-manage}
 
 [mongodb]
 url = ${urls:mongo}

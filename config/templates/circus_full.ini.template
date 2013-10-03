@@ -38,6 +38,14 @@ port = ${ports:bigmax}
 cmd = ${buildout:directory}/bin/mongod
 args = --config ${buildout:directory}/config/mongodb.conf
 
+[watcher:maxbunny]
+cmd = ${buildout:directory}/bin/maxbunny
+args = -c ${buildout:directory}/config/maxbunny.ini
+
+[watcher:maxtweety]
+cmd = ${buildout:directory}/bin/maxtweety
+args = -c ${buildout:directory}/config/maxtweety
+
 [watcher:rabbitmq]
 cmd = ${buildout:directory}/bin/rabbitmq-server
 copy_env = true

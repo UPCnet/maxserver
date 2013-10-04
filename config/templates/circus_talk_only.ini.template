@@ -13,4 +13,7 @@ cmd = ${buildout:directory}/bin/rabbitmq-server
 copy_env = true
 
 [env:rabbitmq]
-HOME = /var/osom/utalk.upcnet.es/
+HOME = ${buildout:directory}/
+
+[watcher:maxbunny]
+cmd = ${buildout:directory}/bin/maxbunny -c ${buildout:directory}/config/maxbunny.ini

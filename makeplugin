@@ -1,0 +1,9 @@
+#/bin/bash
+rm -rf parts/rabbitmq/plugins-src/rabbitmq_auth_backend_max
+cp -r src/rabbitmq_auth_backend_max parts/rabbitmq/plugins-src/rabbitmq_auth_backend_max
+cd parts/rabbitmq/plugins-src/rabbitmq_auth_backend_max
+make
+cd ../../
+cp plugins-src/rabbitmq_auth_backend_max/dist/rabbitmq_auth_backend_max*.ez plugins/
+echo "rabbitmq_auth_backend_max plugin recompiled!"
+

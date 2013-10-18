@@ -2,5 +2,5 @@
     rabbitmq_management,
     rabbitmq_stomp,
     rabbitmq_web_stomp,
-    rabbitmq_auth_backend_http
+    rabbitmq_auth_backend_max
 ].

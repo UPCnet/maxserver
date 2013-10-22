@@ -17,3 +17,6 @@ HOME = ${buildout:directory}/
 
 [watcher:maxbunny]
 cmd = ${buildout:directory}/bin/maxbunny -c ${buildout:directory}/config/maxbunny.ini
+
+[watcher:tweety]
+cmd = ${buildout:directory}/bin/maxtweety -c ${buildout:directory}/config/maxtweety.ini

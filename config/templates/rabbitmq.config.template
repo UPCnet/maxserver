@@ -1,6 +1,6 @@
 [
     {rabbit, [
-        {auth_backends, [rabbit_auth_backend_max,rabbit_auth_backend_internal]}
+        {auth_backends, [rabbit_auth_backend_internal,rabbit_auth_backend_max]}
     ]},
     {rabbitmq_management, [
         {listener, [{port, ${ports:rabbitmq-manage}}]},
@@ -13,7 +13,7 @@
         {port, ${ports:rabbitmq-web-stomp}}
     ]},
     {rabbitmq_auth_backend_max, [
-        {max_server,     "http://${hosts:max-rabbit}:${ports:max}"},
+        {max_server,     "http://${hosts:max-rabbit}:${ports:nginx}"},
         {oauth_server,    "${urls:oauth}"}
     ]},
     {rabbit, [

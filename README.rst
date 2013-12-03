@@ -7,7 +7,7 @@ Steps to succesfully deploy a max locally
 
 * Install OS library dependencies (for Ubuntu systems)::
 
-    apt-get install zlib1g-dev build-essential libldap2-dev libsasl2-dev
+    apt-get install zlib1g-dev build-essential libldap2-dev libsasl2-dev libncurses5-dev xsltproc zip
     libreadline6-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libssl-dev
     tk-dev libgdbm-dev libc6-dev libbz2-dev libxslt1-dev libpcre3-dev libjpeg62-dev libzlcore-dev libfreetype6-dev erlang
 
@@ -71,6 +71,8 @@ Enabling twitter service
 ------------------------
 
 * First you have to create a config/instances.ini file, you can use config/templates/instances.ini.template to copy from. The section name [max_xxxxxx], where xxxxx indicates the value of name in the [max] section of the buildout. can be repeated N times, one for each max that Tweety will be listening tweets for. If in development,  you can leave max_default as the only one.
+
+Also there is a script namped bin/max.newinstance that will guide you in the process of creating each instance
 
 
 

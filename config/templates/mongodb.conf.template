@@ -1,4 +1,4 @@
-port = 27017
+port = ${ports:mongodb}
 dbpath = ${buildout:directory}/var/data
 replSet = maxcluster
 logpath = ${buildout:directory}/var/log/mongodb.log

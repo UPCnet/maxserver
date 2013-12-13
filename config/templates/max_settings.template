@@ -1,3 +1,4 @@
 {
-    "maxserver": "${urls:max}"
+    "maxserver": "${urls:max}",
+    "oauthserver": "${urls:oauth}"
 }

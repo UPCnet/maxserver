@@ -1,6 +1,6 @@
 [circus]
 check_delay = 5
-endpoint = tcp://127.0.0.1:${ports:circus-endpoint}
+endpoint = tcp://0.0.0.0:${ports:circus-endpoint}
 pubsub_endpoint = tcp://127.0.0.1:${ports:circus-pubsub}
 stats_endpoint = tcp://127.0.0.1:${ports:circus-stats}
 
@@ -12,6 +12,7 @@ httpd_port = ${ports:circus}
 cmd = ${buildout:directory}/bin/chaussette --fd $(circus.sockets.max) --backend gevent paste:${buildout:directory}/config/max.ini
 use_sockets = True
 numprocesses = 1
+uid = pyramid
 
 stderr_stream.class = FileStream
 stderr_stream.filename = ${buildout:directory}/var/log/max.log
@@ -25,6 +26,7 @@ port = ${ports:max}
 cmd = ${buildout:directory}/bin/chaussette --fd $(circus.sockets.bigmax) --backend gevent paste:${buildout:directory}/config/bigmax.ini
 use_sockets = True
 numprocesses = 1
+uid = pyramid
 
 stderr_stream.class = FileStream
 stderr_stream.filename = ${buildout:directory}/var/log/bigmax.log

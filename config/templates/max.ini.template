@@ -10,6 +10,7 @@ pyramid.includes = pyramid_tm
 
 max.server_id = ${max:name}
 max.server = ${urls:max}
+max.restricted_user_visibility_mode = False
 max.oauth_server = ${urls:oauth}
 max.oauth_check_endpoint = ${urls:oauth}/checktoken
 max.oauth_standard = ${max:use_osiris}

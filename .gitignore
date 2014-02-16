@@ -47,7 +47,10 @@ config/ssl
 config/rabbit*
 config/*.pem
 config/.max_restricted
+config/osiris-instances/*.conf
+config/max-instances/*.conf
 downloads
 .max_settings
 src
 erl_crash.dump
+

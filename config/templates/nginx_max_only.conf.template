@@ -150,8 +150,8 @@ http {
     ###############################################################
     # Finally, the location of the application
 
-    # Include locations for oauth instances
-    include ${buildout:directory}/config/max-instances.conf;
+    # Include locations for max instances
+    include ${buildout:directory}/config/max-instances/*.conf;
 
     location / {
 

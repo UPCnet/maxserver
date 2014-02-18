@@ -203,4 +203,5 @@ http {
 
   # Include other virtualhosts
   include ${buildout:directory}/config/sites-enabled/*;
+  include ${buildout:directory}/config/circus-instances/*.conf;
 }

@@ -49,6 +49,7 @@ config/*.pem
 config/.max_restricted
 config/osiris-instances/*.conf
 config/max-instances/*.conf
+config/circus-instances/*.conf
 config/circus.htpasswd
 downloads
 .max_settings

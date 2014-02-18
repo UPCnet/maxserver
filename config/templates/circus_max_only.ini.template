@@ -5,7 +5,7 @@ pubsub_endpoint = tcp://127.0.0.1:${ports:circus-pubsub}
 stats_endpoint = tcp://127.0.0.1:${ports:circus-stats}
 
 httpd = True
-httpd_host = ${hosts:main}
+httpd_host = 127.0.0.1
 httpd_port = ${ports:circus}
 
 [watcher:max]

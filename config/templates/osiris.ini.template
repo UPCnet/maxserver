@@ -1,21 +1,21 @@
 [app:main]
 use = egg:osiris
 
-pyramid.reload_templates = ${max:development}
+pyramid.reload_templates = ${max-config:development}
 pyramid.debug_authorization = false
 pyramid.debug_notfound = false
 pyramid.debug_routematch = false
-pyramid.debug_templates = ${max:development}
+pyramid.debug_templates = ${max-config:development}
 pyramid.default_locale_name = en
 
 osiris.store = osiris.store.mongodb_store
 osiris.store.host = ${hosts:mongodb}
 osiris.store.port = ${ports:mongodb}
-osiris.store.db = osiris_${max:name}
+osiris.store.db = osiris_${max-config:name}
 osiris.store.collection = tokens
 osiris.tokenexpiry = 0
 
-osiris.mongodb.cluster = ${max:cluster_enabled}
+osiris.mongodb.cluster = ${max-config:cluster_enabled}
 osiris.mongodb.hosts = ${hosts:mongodb_cluster}
 osiris.mongodb.replica_set = maxcluster
 osiris.mongodb.use_greenlets = ${osiris:use_greenlets}

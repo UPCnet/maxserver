@@ -5,8 +5,8 @@ manage = ${urls:rabbit-manage}
 
 [mongodb]
 url = ${urls:mongo}
-db_name = max_${max:name}
-cluster = ${max:cluster_enabled}
+db_name = max_${max-config:name}
+cluster = ${max-config:cluster_enabled}
 hosts = ${hosts:mongodb_cluster}
 replica_set = maxcluster
 

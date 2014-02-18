@@ -1,32 +1,32 @@
 [app:main]
 use = egg:max
-pyramid.reload_templates = ${max:development}
+pyramid.reload_templates = ${max-config:development}
 pyramid.debug_authorization = false
 pyramid.debug_notfound = false
 pyramid.debug_routematch = false
-pyramid.debug_templates = ${max:development}
+pyramid.debug_templates = ${max-config:development}
 pyramid.default_locale_name = en
 pyramid.includes = pyramid_tm
 
-max.server_id = ${max:name}
+max.server_id = ${max-config:name}
 max.server = ${urls:max}
 max.restricted_user_visibility_mode = False
 max.oauth_server = ${urls:oauth}
 max.oauth_check_endpoint = ${urls:oauth}/checktoken
-max.oauth_standard = ${max:use_osiris}
+max.oauth_standard = ${max-config:use_osiris}
 max.rabbitmq = ${urls:rabbit}
 max.rabbitmq-manage = ${urls:rabbit-manage}
 cache.regions = oauth_token
 cache.type = memory
 cache.oauth_token.expire = 60
-max.debug_api = ${max:debug_api}
-max.oauth_passtrough = ${max:oauth_passtrough}
+max.debug_api = ${max-config:debug_api}
+max.oauth_passtrough = ${max-config:oauth_passtrough}
 avatar_folder = ${buildout:directory}/var/avatars
 config_directory = ${buildout:directory}/config/
 
 mongodb.url = ${urls:mongo}
-mongodb.db_name = max_${max:name}
-mongodb.cluster = ${max:cluster_enabled}
+mongodb.db_name = max_${max-config:name}
+mongodb.cluster = ${max-config:cluster_enabled}
 mongodb.hosts = ${hosts:mongodb_cluster}
 mongodb.replica_set = maxcluster
 

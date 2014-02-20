@@ -1,13 +1,3 @@
-##
-##   Indexes for mongo. Syntax:
-##
-##   [database:name]
-##   collection1:key
-##   collection2:key.subkey
-##
-
-[database:max_default]
-
 users:username
 users:twitterUsername
 

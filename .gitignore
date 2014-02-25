@@ -55,4 +55,5 @@ downloads
 .max_settings
 src
 erl_crash.dump
-
+.erlang.cookie
+dump.rdb

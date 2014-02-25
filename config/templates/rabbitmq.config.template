@@ -13,7 +13,7 @@
         {port, ${ports:rabbitmq-web-stomp}}
     ]},
     {rabbitmq_auth_backend_max, [
-        {max_server,     "http://${hosts:max-rabbit}:${ports:nginx}"},
+        {max_server,     "${urls:max}"},
         {oauth_server,    "${urls:oauth}"}
     ]},
     {rabbit, [

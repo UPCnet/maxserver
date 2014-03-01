@@ -21,6 +21,7 @@ max.oauth_clientid = MAX
 max.oauth_scope = widgetcli
 max.server = ${urls:max}
 max.stomp = ${urls:stomp}
+max.instances = ${buildout:directory}/config/max-instances.ini
 
 max.ops_username = operations
 max.ops_password = operations

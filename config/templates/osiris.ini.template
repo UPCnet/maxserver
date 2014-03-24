@@ -7,6 +7,7 @@ pyramid.debug_notfound = false
 pyramid.debug_routematch = false
 pyramid.debug_templates = ${max-config:development}
 pyramid.default_locale_name = en
+pyramid.includes = ${osiris:includes}
 
 osiris.store = osiris.store.mongodb_store
 osiris.store.host = ${hosts:mongodb}

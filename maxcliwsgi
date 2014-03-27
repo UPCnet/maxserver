@@ -1,0 +1,25 @@
+#!/usr/bin/env ./bin/python
+
+import sys
+from maxclient.wsgi import MaxClient
+
+DEFAULT_MAX_SERVER = 'http://localhost:8081'
+
+maxserver = raw_input('Max Server ({}): '.format(DEFAULT_MAX_SERVER))
+if not maxserver.strip():
+    maxserver = DEFAULT_MAX_SERVER
+
+maxclient = MaxClient(maxserver)
+maxclient.login()
+
+print """
+
+Welcome !
+
+Use it like:
+
+     maxclient.resourcename['resource'].get()
+
+"""
+data = maxclient.people['carles.bruguera'].get()
+import ipdb;ipdb.set_trace()

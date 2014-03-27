@@ -196,7 +196,7 @@ http {
         proxy_set_header Connection "upgrade";
      }
 
-    location ~* ^/(?!contexts|people|activities|conversations|admin|endpoints).*$ {
+    location ~* ^/(?!contexts|people|activities|conversations|admin|info).*$ {
         # FOR SSL --> # proxy_set_header X-Virtual-Host-URI $scheme://${hosts:main};
         proxy_set_header X-Virtual-Host-URI $scheme://${hosts:main}:${ports:nginx};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

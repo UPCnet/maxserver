@@ -48,7 +48,7 @@ args = ('${buildout:directory}/var/log/maxbunny.log', 'a')
 formatter = generic
 
 [formatter_generic]
-format = %(levelname) -10s %(asctime)s %(name) -10s %(funcName) -35s %(lineno) -5d: %(message)s
+format = %(levelname) -10s %(asctime)s %(name) -15s %(funcName) -20s %(lineno) -5d: %(message)s
 
 [formatter_clean]
 format = %(asctime)s %(message)s

@@ -8,6 +8,7 @@ pyramid.debug_templates = ${max-config:development}
 pyramid.default_locale_name = en
 pyramid.includes = pyramid_tm
 
+max.compat_id = ${max-config:compat_id}
 max.server_id = ${max-config:name}
 max.server = ${urls:max}
 max.restricted_user_visibility_mode = False

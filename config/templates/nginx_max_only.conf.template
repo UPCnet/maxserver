@@ -123,7 +123,7 @@ http {
     listen ${ports:nginx};
     ssl on;
 
-    client_max_body_size 42k;
+    client_max_body_size 500M;
 
     # e.g. "localhost" to accept all connections, or "www.example.com"
     # to handle the requests for "example.com" (and www.example.com)

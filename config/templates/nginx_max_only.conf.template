@@ -144,7 +144,8 @@ http {
     more_set_headers 'Access-Control-Allow-Origin: *';
     more_set_headers 'Access-Control-Allow-Credentials: true';
     more_set_headers 'Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS';
-    more_set_headers 'Access-Control-Allow-Headers: X-HTTP-Method-Override,X-Oauth-Token,X-Oauth-Username,X-Oauth-Scope,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+    more_set_headers 'Access-Control-Allow-Headers: X-HTTP-Method-Override,X-Oauth-Token,X-Oauth-Username,X-Oauth-Scope,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,X-Has-Remaining-Items';
+    more_set_headers 'Access-Control-Expose-Headers: X-Has-Remaining-Items';
 
 
     ###############################################################
@@ -182,7 +183,7 @@ http {
         proxy_set_header Connection "upgrade";
      }
 
-    location ~* ^/(?!contexts|people|activities|conversations|admin|auth).*$ {
+    location ~* ^/(?!contexts|people|activities|conversations|messages|admin|info).*$ {
         proxy_set_header X-Virtual-Host-URI $scheme://${hosts:main};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;

@@ -8,12 +8,13 @@ pyramid.debug_templates = ${max-config:development}
 pyramid.default_locale_name = en
 pyramid.includes = pyramid_tm
                    pyramid_beaker
+                   pyramid_chameleon
 
 # MAX and LDAP config
 exceptions_log = ${buildout:directory}/var/log/exceptions.log
 max.oauth_server = ${urls:oauth}
 max.server_id = ${max-config:name}
-max.oauth_standard = ${max-config:use_osiris} 
+max.oauth_standard = ${max-config:use_osiris}
 max.oauth_token_endpoint = ${urls:oauth}/token
 max.oauth_check_endpoint = ${urls:oauth}/checktoken
 max.oauth_grant_type = password

@@ -14,7 +14,8 @@
     ]},
     {rabbitmq_auth_backend_max, [
         {max_server,     "${urls:max}"},
-        {oauth_server,    "${urls:oauth}"}
+        {oauth_server,    "${urls:oauth}"},
+        {oauth_standard,    "${max-config:use_osiris}"}
     ]},
     {rabbit, [
         {tcp_listeners, [${ports:rabbitmq}]}

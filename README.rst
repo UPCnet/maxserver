@@ -2,8 +2,8 @@ Maxserver buildout Development edition
 ======================================
 
 
-Steps to succesfully deploy a max locally
------------------------------------------
+Steps to succesfully deploy a local max system
+-----------------------------------------------
 
 * Install OS library dependencies (for Ubuntu systems)::
 
@@ -22,9 +22,27 @@ Steps to succesfully deploy a max locally
     $ python bootstrap.py -c devel.cfg
     $ ./bin/buildout -c devel.cfg
 
-* Start supervisor::
+    There are different .cfg files available to different deploy scenarios:
+
+    * base.cfg - Base file with common sections, not to be deployed
+    * customizeme.cfg - This is where you customize settings for your instance, (ports, urls, parts ...)
+    * devel.cfg - Development version, full stack, with sources from git
+    * debug.cfg - To connect to a (monolytic) remote max environment locally.
+    * monoserver.cfg - Deploy a full stack max, using packaged versions in versions.cfg
+    * jenkins.cfg - For Jenkins CI
+    * max-only.cfg - Deploy a single max & bigmax instance
+    * mongodb-only.cfg - Deploy a mongodb ready for max
+    * nginx-only.cfg - Deploy a nginx server for max
+    * osiris-only.cfg - Deploy a osiris oauth server for max
+    * talk-only.cf - Deploy RabbitMQ and queue processing tools
+
+* Start supervisor (for devel, debug, monoserver & prepro)::
 
     $ ./bin/supervisord
+
+* Start circusd (the rest of cfg)
+
+    $ ./bin/circusd config/circus.ini --daemon
 
 * Define the users you want to set as initial administators on file ``config/.authorized_users`` and then, create initial persistent security settings::
 

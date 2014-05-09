@@ -8,16 +8,16 @@ httpd = True
 httpd_host = 127.0.0.1
 httpd_port = ${ports:circus}
 
-[watcher:max]
-cmd = ${buildout:directory}/bin/chaussette --fd $(circus.sockets.max) --backend gevent paste:${buildout:directory}/config/max.ini
+[watcher:bigmax]
+cmd = ${buildout:directory}/bin/chaussette --fd $(circus.sockets.bigmax) --backend gevent paste:${buildout:directory}/config/bigmax.ini
 use_sockets = True
 numprocesses = 1
 uid = pyramid
 
 stderr_stream.class = FileStream
-stderr_stream.filename = ${buildout:directory}/var/log/max.log
+stderr_stream.filename = ${buildout:directory}/var/log/bigmax.log
 stderr_stream.refresh_time = 0.3
 
-[socket:max]
+[socket:bigmax]
 host = 0.0.0.0
-port = ${ports:max}
+port = ${ports:bigmax}

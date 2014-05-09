@@ -194,7 +194,7 @@ http {
         proxy_set_header Connection "upgrade";
      }
 
-    location ~* ^/(?!contexts|people|activities|conversations|admin|info).*$ {
+    location ~* ^/(?!contexts|people|activities|conversations|messages|admin|info).*$ {
         proxy_set_header X-Virtual-Host-URI $scheme://${hosts:main};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;

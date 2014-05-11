@@ -177,6 +177,9 @@ http {
         try_files $uri @proxy_to_app;
     }
 
+    # Include locations for max instances
+    include ${buildout:directory}/config/max-instances/*.conf;
+
     #For maxui development
     location ^~ /maxui-dev/ {
            alias   ${buildout:directory}/src/max.ui.js/;

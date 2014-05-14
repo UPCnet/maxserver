@@ -12,13 +12,13 @@ logging_folder = ${buildout:directory}/var/log
 # Begin logging configuration
 
 [loggers]
-keys = root, bunny
+keys = root, bunny, requeues
 
 [handlers]
-keys = console, conclean, bunny
+keys = console, conclean, bunny, requeuelog
 
 [formatters]
-keys = generic, clean
+keys = generic, clean, cleaner
 
 [logger_root]
 level = WARN
@@ -47,6 +47,20 @@ level = INFO
 class = FileHandler
 args = ('${buildout:directory}/var/log/maxbunny.log', 'a')
 formatter = generic
+
+[logger_requeues]
+level = DEBUG
+handlers = requeuelog
+qualname = requeues
+
+[handler_requeuelog]
+level = DEBUG
+class = FileHandler
+args = ('${buildout:directory}/var/log/requeues.log', 'a')
+formatter = cleaner
+
+[formatter_cleaner]
+format = %(message)s
 
 [formatter_generic]
 format = %(levelname) -10s %(asctime)s %(name) -15s %(funcName) -20s %(lineno) -5d: %(message)s

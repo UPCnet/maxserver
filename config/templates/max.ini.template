@@ -22,6 +22,7 @@ cache.type = memory
 cache.oauth_token.expire = 60
 max.debug_api = ${max-config:debug_api}
 max.oauth_passtrough = ${max-config:oauth_passtrough}
+max.include_traceback_in_500_errors = false
 avatar_folder = ${buildout:directory}/var/avatars
 config_directory = ${buildout:directory}/config/
 file_repository = ${buildout:directory}/var/repository

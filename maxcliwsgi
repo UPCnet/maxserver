@@ -21,5 +21,4 @@ Use it like:
      maxclient.resourcename['resource'].get()
 
 """
-data = maxclient.people['carles.bruguera'].get()
 import ipdb;ipdb.set_trace()

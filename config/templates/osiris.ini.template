@@ -22,6 +22,7 @@ osiris.mongodb.replica_set = maxcluster
 osiris.mongodb.use_greenlets = ${osiris:use_greenlets}
 
 osiris.whoconfig = %(here)s/osiris-who.ini
+osiris.who_enabled = ${osiris:who_enabled}
 # Check README instructions if you want to enable LDAP auth backend
 osiris.ldap_enabled = ${osiris:ldap_enabled}
 osiris.ldapconfig = %(here)s/ldap.ini

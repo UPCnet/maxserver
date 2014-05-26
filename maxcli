@@ -6,16 +6,16 @@ from maxclient.rest import MaxClient
 DEFAULT_MAX_SERVER = 'http://localhost:8081'
 DEFAULT_OAUTH_SERVER = 'https://oauth.upcnet.es'
 
-#maxserver = raw_input('Max Server ({}): '.format(DEFAULT_MAX_SERVER))
-#if not maxserver.strip():
-maxserver = DEFAULT_MAX_SERVER
-#
-#oauthserver = raw_input('Oauth Server: ({}): '.format(DEFAULT_OAUTH_SERVER))
-#if not oauthserver.strip():
-oauthserver = DEFAULT_OAUTH_SERVER
-#
+maxserver = raw_input('Max Server ({}): '.format(DEFAULT_MAX_SERVER))
+if not maxserver.strip():
+    maxserver = DEFAULT_MAX_SERVER
+
+oauthserver = raw_input('Oauth Server: ({}): '.format(DEFAULT_OAUTH_SERVER))
+if not oauthserver.strip():
+    oauthserver = DEFAULT_OAUTH_SERVER
+
 maxclient = MaxClient(maxserver, oauth_server=oauthserver, debug=True)
-maxclient.login('carles.bruguera', 'Changetheworld7')
+maxclient.login()
 
 print """
 

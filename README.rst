@@ -27,6 +27,7 @@ Steps to succesfully deploy a local max system
     * base.cfg - Base file with common sections, not to be deployed
     * customizeme.cfg - This is where you customize settings for your instance, (ports, urls, parts ...)
     * devel.cfg - Development version, full stack, with sources from git
+    * devel-with-osiris.cfg - Development version, full stack, with sources from git, using local oauth
     * debug.cfg - To connect to a (monolytic) remote max environment locally.
     * monoserver.cfg - Deploy a full stack max, using packaged versions in versions.cfg
     * jenkins.cfg - For Jenkins CI
@@ -44,7 +45,7 @@ Steps to succesfully deploy a local max system
 
     $ ./bin/circusd config/circus.ini --daemon
 
-* Define the users you want to set as initial administators on file ``config/.authorized_users`` and then, create initial persistent security settings::
+* By default the database will be initialized with permissions for a user named "restricted". If you want other users to be set as initial administators, add them on file ``config/.authorized_users`` . I both cases, then create initial persistent security setting by executing ::
 
     $ ./bin/initialize_max_db config/max.ini
     Created default security info in MAXDB.\n"
@@ -60,9 +61,9 @@ Once filled, execute the following command::
 
     $ ./bin/maxui.setup
 
-* Add yourself to max::
+* Add the restructed user and any users you want to max. You'll be asked a username and password the first time. Use "restricted" or any of the users in the latter ``.authorized_users``::
 
-    $ ./bin/max.devel add user your.name
+    $ ./bin/max.devel add user restricted
     Done.
 
 * Initialize the restricted user for use of daemon scripts (Tweety and
@@ -73,7 +74,6 @@ Once filled, execute the following command::
 * Initialize the RabbitMQ server settings by running::
 
     $ ./bin/max.rabbit -c config/max.ini
-
 
 * Restart max process to apply all the changes::
 
@@ -91,7 +91,6 @@ Enabling twitter service
 * First you have to create a config/instances.ini file, you can use config/templates/instances.ini.template to copy from. The section name [max_xxxxxx], where xxxxx indicates the value of name in the [max] section of the buildout. can be repeated N times, one for each max that Tweety will be listening tweets for. If in development,  you can leave max_default as the only one.
 
 Also there is a script namped bin/max.newinstance that will guide you in the process of creating each instance
-
 
 
 Considerations using the development version widget
@@ -122,9 +121,3 @@ Troubleshooting
 
 * 401 when creating the initial user:
     - Possibly you don't have permission to request a token from the designated oauth server
-
-* Maxtalk complains: AttributeError: 'GeventSocketIOWorker' object has no attribute 'socket'
-    - Possibly wrong gunicorn version, last known working 0.16.1
-
-* Maxtalk complains: KeyError: 'socketio' // KeyError: 'wsgi.websocket'
-    - Nginx HTTP upgrade misconfiguration

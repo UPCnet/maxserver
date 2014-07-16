@@ -21,6 +21,7 @@ production
 lib
 lib64
 coverage
+data/
 
 # Installer logs
 pip-log.txt

@@ -1,5 +1,5 @@
 [ldap]
-server = ldaps://fajolpetit.upcnet.es
+server = ldaps://ldap.upcnet.es
 userbind = cn=ldap,ou=___INSTANCE_NAME___,dc=upcnet,dc=es
 password = ___PASSWORD___
 userbasedn = ou=___INSTANCE_NAME___,dc=upcnet,dc=es

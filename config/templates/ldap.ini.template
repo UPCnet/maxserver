@@ -1,0 +1,11 @@
+[ldap]
+server = ldaps://ldap.upcnet.es
+userbind = cn=ldap,ou=___INSTANCE_NAME___,dc=upcnet,dc=es
+password = ___PASSWORD___
+userbasedn = ou=___INSTANCE_NAME___,dc=upcnet,dc=es
+userfilter = (cn=%(login)s)
+userscope = SCOPE_SUBTREE
+groupbasedn = ou=groups,ou=___INSTANCE_NAME___,dc=upcnet,dc=es
+groupfilter = (&(objectClass=groupOfNames)(member=%(userdn)s))
+groupscope = SCOPE_SUBTREE
+groupcache = 600

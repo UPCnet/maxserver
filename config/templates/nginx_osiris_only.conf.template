@@ -146,7 +146,6 @@ http {
     }
 
     # Include locations for oauth instances
-    include ${buildout:directory}/config/osiris-instances.conf;
     include ${buildout:directory}/config/osiris-instances/*.conf;
   }
 

@@ -24,4 +24,4 @@ PLUGINS_DIR="${rabbitmq:home}/plugins"
 ENABLED_PLUGINS_FILE="${buildout:directory}/config/rabbitmq/enabled_plugins"
 
 [ -f $$CONF_ENV_FILE ] && . $$CONF_ENV_FILE
-
+echo

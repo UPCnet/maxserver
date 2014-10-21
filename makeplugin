@@ -1,25 +1,27 @@
 #/bin/bash
+BUILDOUT=`pwd`
+
 rm -rf parts/rabbitmq/plugins-src/rabbitmq_auth_backend_max
 cp -r src/rabbitmq_auth_backend_max parts/rabbitmq/plugins-src/rabbitmq_auth_backend_max
 cd parts/rabbitmq/plugins-src/rabbitmq_auth_backend_max
 make
-cd ../../
-cp plugins-src/rabbitmq_auth_backend_max/dist/rabbitmq_auth_backend_max*.ez plugins/
+cd $BUILDOUT 
+cp parts/rabbitmq/plugins-src/rabbitmq_auth_backend_max/dist/rabbitmq_auth_backend_max*.ez parts/rabbitmq/plugins/
 echo
 echo "*********************************************"
 echo "RabbitMQ MAX authentication plugin installed!"
 echo "*********************************************"
 echo
 
-rm -rf /parts/rabbitmq/plugins-src/rabbitmq-stomp/src
-rm -rf /parts/rabbitmq/plugins-src/rabbitmq-stomp/include
-cp -r /src/rabbitmq-stomp/src ${buildout:directory}/parts/rabbitmq/plugins-src/rabbitmq-stomp
-cp -r /src/rabbitmq-stomp/include ${buildout:directory}/parts/rabbitmq/plugins-src/rabbitmq-stomp
-cd /parts/rabbitmq/plugins-src/rabbitmq-stomp
+rm -rf parts/rabbitmq/plugins-src/rabbitmq-stomp/src
+rm -rf parts/rabbitmq/plugins-src/rabbitmq-stomp/include
+cp -r src/rabbitmq-stomp/src parts/rabbitmq/plugins-src/rabbitmq-stomp
+cp -r src/rabbitmq-stomp/include parts/rabbitmq/plugins-src/rabbitmq-stomp
+cd parts/rabbitmq/plugins-src/rabbitmq-stomp
 make
-cd ../../
-rm -rf /plugins/rabbitmq_stomp*.ez
-cp plugins-src/rabbitmq-stomp/dist/rabbitmq_stomp*.ez plugins/
+cd $BUILDOUT
+rm -rf parts/rabbitmq/plugins/rabbitmq_stomp*.ez
+cp parts/rabbitmq/plugins-src/rabbitmq-stomp/dist/rabbitmq_stomp*.ez parts/rabbitmq/plugins/
 echo
 echo "***************************************"
 echo "RabbitMQ custom STOMP plugin installed!"

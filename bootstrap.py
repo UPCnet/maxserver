@@ -39,6 +39,18 @@ Note that by using --find-links to point to local resources, you can keep
 this script from going over the network.
 '''
 
+# Custom bootstraping step to create config files
+config_files = [
+    ('config/templates/mongoauth.cfg.template', 'mongoauth.cfg'),
+    ('config/templates/cloudapis.ini.template', 'config/cloudapis.ini')
+]
+
+for source, destination in config_files:
+    if not os.path.exists(destination):
+        shutil.copyfile(source, destination)
+        print 'Generated config file {}'.format(os.path.realpath(destination))
+
+
 parser = OptionParser(usage=usage)
 parser.add_option("-v", "--version", help="use a specific zc.buildout version")
 
@@ -168,6 +180,3 @@ if options.config_file is not None:
 
 zc.buildout.buildout.main(args)
 shutil.rmtree(tmpeggs)
-
-# Custom bootstraping
-shutil.copyfile('config/templates/mongoauth.cfg.template', 'mongoauth.cfg')

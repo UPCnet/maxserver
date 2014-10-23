@@ -5,5 +5,5 @@ access_token =
 access_token_secret =
 
 [push]
-push_certificate_file = ${buildout:directory}/config/apns-production.pem
+push_certificate_file =
 android_push_api_key =

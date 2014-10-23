@@ -11,6 +11,10 @@ storage:
 replication:
     replSetName: maxcluster
 
+security:
+    authorization: enabled
+    keyFile: /var/mongodb/var/mongodb-keyfile
+
 systemLog:
     destination: file
     path: ${buildout:directory}/var/log/mongodb.log

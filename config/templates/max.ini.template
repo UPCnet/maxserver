@@ -32,6 +32,10 @@ mongodb.db_name = max_${max-config:name}
 mongodb.cluster = ${max-config:cluster_enabled}
 mongodb.hosts = ${hosts:mongodb_cluster}
 mongodb.replica_set = maxcluster
+mongodb.auth = ${mongo-auth:enabled}
+mongodb.authdb = ${mongo-auth:authdb}
+mongodb.username = ${mongo-auth:username}
+mongodb.password = ${mongo-auth:password}
 
 [server:main]
 use = egg:waitress#main
@@ -83,3 +87,4 @@ format = %(message)s
 format = %(asctime)s %(levelname)-5.5s [%(name)s][%(threadName)s] %(message)s
 
 # End logging configuration
+

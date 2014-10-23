@@ -95,7 +95,7 @@ Excute this commands on the PRIMARY to create admin users::
     db.createUser( {
         user: "root",
         pwd: "<password-here>",
-        roles: [ { role: "root", db: "admin" } ]
+        roles: [ { role: "readWriteAnyDatabase", db: "admin" } ]
       });
 
 Shutdown all instances, and create a secure keyfile::

@@ -1,5 +1,5 @@
-Steps to deploy a max mongo cluster
-===================================
+Setup a max mongo cluster
+=========================
 
 Mongo clusters are composed of at last 3 servers, so first of all, repeat
 setup steps on each server::
@@ -9,19 +9,28 @@ setup steps on each server::
     cd /var/mongodb
     /var/python/python2.7/bin/python bootstrap.py -c mongodb-only.cfg
 
-Edit customizeme.cfg and set ``main`` value of ``[hosts]`` section to the dns name of the server, then
-execute buildout::
+Edit customizeme.cfg and modify the followig options, each in its correct section::
+
+    [hosts]
+    main = server.name.com
+
+    [ports]
+    circus-endpoint = 28081
+    circus-pubsub = 28082
+    circus-stats = 28083
+
+then proceed to execute buildout::
 
     ./bin/buildout -c mongodb-only.cfg
 
-Edit the buildout-generated config/mongodb.conf and commment out the security options, to be able to
-access the database the veryfirst time::
+Edit the buildout-generated ``config/mongodb.conf`` and commment out the security options, to be able to
+access the database the very first time::
 
     #security:
     #    authorization: enabled
     #    keyFile: /var/mongodb/var/mongodb-keyfile
 
-Create init script for the mongodb instance, at ``/etc/init.d/mongodb``use the following as a template::
+Create init script for the mongodb instance, at ``/etc/init.d/mongodb``. Use this snipped as a template::
 
     #!/bin/sh
     # chkconfig: - 85 15
@@ -48,7 +57,7 @@ Create init script for the mongodb instance, at ``/etc/init.d/mongodb``use the f
     esac
     exit 0
 
-Setup init script and bring up mongodb instance::
+Setup init script and start mongodb instance::
 
     chmod +x /etc/init.d/mongodb
     update-rc.d mongodb defaults
@@ -88,12 +97,12 @@ Excute this commands on the PRIMARY to create admin users::
 
     use admin
     db.createUser({
-        user: "admin",
+        user: "root",
         pwd: "<password-here>",
-        roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+        roles: [ { role: "root", db: "admin" } ]
       });
     db.createUser( {
-        user: "root",
+        user: "admin",
         pwd: "<password-here>",
         roles: [ { role: "readWriteAnyDatabase", db: "admin" } ]
       });
@@ -106,7 +115,7 @@ Shutdown all instances, and create a secure keyfile::
 Replicate this file onto all cluster servers. Now you can uncomment the security options commented in the
 first steps, and restart all the cluster members.
 
-Open the shell of the server where the users were created, and authenticate::
+Now you can try to authentica in the mongo shell of each cluster member as follows::
 
     use admin
-    db.auth("root", "<password>");
+    db.auth("admin", "<password>");

@@ -1,5 +1,5 @@
-Configuring a deployment max server
-===================================
+Setup a development max server
+==============================
 
 - Bootstrap and execute buildout::
 
@@ -7,7 +7,7 @@ Configuring a deployment max server
     ./bin/buildout -c configfile.cfg
 
 
-- Start supervisor
+- Start supervisor::
 
     ./bin/supervisord
 
@@ -17,9 +17,9 @@ Configuring a deployment max server
 
 * A file placed in ``config/cloudapis.ini``, waits for you to fill in the twitter settings for your twitter user. If you don't plan to enable twitter service on this max server, you can skip this step. Once filled, execute the following command::
 
-.. note:: This file is not included with the repo's files, is created by the boostraping script. So don't be afraid, that your twitter config won't go anywhere!.
-
     ./bin/max.cloudapis -c config/common.ini -a config/cloudapis.ini
+
+.. note:: This file is not included with the repo's files, is created by the boostraping script. So don't be afraid, that your twitter config won't go anywhere!.
 
 * Initialize max.ui development widget base settings, it will ask for your credentials
   and store them in .max_settings::
@@ -32,10 +32,11 @@ Configuring a deployment max server
 
 * Initialize all the needed for RabbitMQ to work with max. This will create all the exchanges and queues nedded for each user that exists on the database, along with all the common ones::
 
-.. note:: You can run this command every time you want to ensure consistency of the current rabbit exchanges and queues, related with users and conversations present on max.
+.. note:: You can run this command every time you want to ensure consistency of the current rabbit exchanges and queues, related with users and conversations present on max::
 
-    $ ./bin/max.rabbit -c config/max.ini
+    ./bin/max.rabbit -c config/max.ini
 
-* Restart max process to apply all the changes::
+* Restart max process to reload all the changes::
 
     $ ./bin/supervisorctl restart max
+

@@ -50,8 +50,3 @@ meant to be used in a production environment:
 
 
 And finally there's a jenkins.cfg configuration, that is similar to devel.cfg, only to be used inside jenkins CI.
-
-* Bootstrap and execute buildout::
-
-    $ python bootstrap.py -c <configfile.cfg>
-    $ ./bin/buildout -c <configfile.cfg>

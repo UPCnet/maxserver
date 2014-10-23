@@ -35,7 +35,7 @@ Bootstraps a buildout-based project.
 Simply run this script in a directory containing a buildout.cfg, using the
 Python that you want bin/buildout to use.
 
-Note that by using --find-links to point to local resources, you can keep 
+Note that by using --find-links to point to local resources, you can keep
 this script from going over the network.
 '''
 
@@ -168,3 +168,6 @@ if options.config_file is not None:
 
 zc.buildout.buildout.main(args)
 shutil.rmtree(tmpeggs)
+
+# Custom bootstraping
+shutil.copyfile('config/templates/mongoauth.cfg.template', 'mongoauth.cfg')

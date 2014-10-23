@@ -1,7 +1,17 @@
-port = ${ports:mongodb}
-dbpath = ${buildout:directory}/var/data
-replSet = maxcluster
-logpath = ${buildout:directory}/var/log/mongodb.log
-logappend = true
-directoryperdb = true
-rest = true
+net:
+    port: ${ports:mongodb}
+    http:
+        enabled: true
+        RESTInterfaceEnabled: true
+
+storage:
+    dbPath: ${buildout:directory}/var/data
+    directoryPerDB: true
+
+replication:
+    replSetName: maxcluster
+
+systemLog:
+    destination: file
+    path: ${buildout:directory}/var/log/mongodb.log
+    logAppend: true

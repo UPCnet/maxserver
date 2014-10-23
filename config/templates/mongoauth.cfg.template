@@ -1,0 +1,4 @@
+[mongo-auth]
+auth=true
+username=admin
+password=

@@ -39,18 +39,6 @@ Note that by using --find-links to point to local resources, you can keep
 this script from going over the network.
 '''
 
-# Custom bootstraping step to create config files
-config_files = [
-    ('config/templates/mongoauth.cfg.template', 'mongoauth.cfg'),
-    ('config/templates/cloudapis.ini.template', 'config/cloudapis.ini')
-]
-
-for source, destination in config_files:
-    if not os.path.exists(destination):
-        shutil.copyfile(source, destination)
-        print 'Generated config file {}'.format(os.path.realpath(destination))
-
-
 parser = OptionParser(usage=usage)
 parser.add_option("-v", "--version", help="use a specific zc.buildout version")
 
@@ -71,6 +59,32 @@ parser.add_option("-f", "--find-links",
 
 
 options, args = parser.parse_args()
+
+
+######################################################################
+# Custom bootstraping step
+
+def install_configfile(source, destination):
+    """
+        Install a configfile from a template
+    """
+    if not os.path.exists(destination):
+        shutil.copyfile(source, destination)
+        print 'Generated config file {}'.format(os.path.realpath(destination))
+        return True
+
+# Initialize cloudapis config file
+cloudapis_configfiles = ('config/templates/cloudapis.ini.template', 'config/cloudapis.ini')
+install_configfile(*cloudapis_configfiles)
+
+# Initialize mongo authorization config file
+# will disable auth if we are deploying a development buildout
+mongoauth_configfiles = ('config/templates/mongoauth.cfg.template', 'mongoauth.cfg')
+if install_configfile(*mongoauth_configfiles):
+    if options.config_file in ['devel.cfg', 'devel-with-osiris.cfg']:
+        content = open(mongoauth_configfiles[1]).read()
+        open(mongoauth_configfiles[1], 'w').write(content.replace('enabled=true', 'enabled=false'))
+
 
 ######################################################################
 # load/install setuptools

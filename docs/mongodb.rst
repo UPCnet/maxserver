@@ -115,7 +115,7 @@ Shutdown all instances, and create a secure keyfile::
 Replicate this file onto all cluster servers. Now you can uncomment the security options commented in the
 first steps, and restart all the cluster members.
 
-Now you can try to authentica in the mongo shell of each cluster member as follows::
+Now you can try to authenticate in the mongo shell of each cluster member as follows::
 
     use admin
     db.auth("admin", "<password>");

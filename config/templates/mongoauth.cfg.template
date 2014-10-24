@@ -1,4 +1,5 @@
 [mongo-auth]
-auth=true
+enabled=true
+authdb=admin
 username=admin
 password=

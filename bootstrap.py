@@ -92,7 +92,6 @@ if install_configfile(*mongoauth_configfiles):
 
 #Initialize customizeme.cfg if a matching template is found
 customizeme_template = 'config/templates/customizeme/customizeme.{}'.format(options.config_file)
-print customizeme_template
 if os.path.exists(customizeme_template):
     install_configfile(customizeme_template, 'customizeme.cfg')
 # otherwise set it empty if it doesn't exist yet.

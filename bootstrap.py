@@ -62,7 +62,7 @@ options, args = parser.parse_args()
 
 
 ######################################################################
-# Custom bootstraping step
+# Custom bootstraping step to generate extra .cfg files
 
 def install_configfile(source, destination):
     """
@@ -74,7 +74,7 @@ def install_configfile(source, destination):
         if source:
             shutil.copyfile(source, destination)
         else:
-            open(destination, 'w').write()
+            open(destination, 'w').write('')
         print 'Generated config file {}'.format(os.path.realpath(destination))
         return True
 
@@ -91,7 +91,8 @@ if install_configfile(*mongoauth_configfiles):
         open(mongoauth_configfiles[1], 'w').write(content.replace('enabled=true', 'enabled=false'))
 
 #Initialize customizeme.cfg if a matching template is found
-customizeme_template = 'config/templates/customizeme-{}'.format(options.config_file)
+customizeme_template = 'config/templates/customizeme/customizeme.{}'.format(options.config_file)
+print customizeme_template
 if os.path.exists(customizeme_template):
     install_configfile(customizeme_template, 'customizeme.cfg')
 # otherwise set it empty if it doesn't exist yet.

@@ -48,8 +48,6 @@ var/sessions
 var/rabbitmq/mnesia
 var/rabbitmq/home
 
-customizeme.cfg
-mongoauth.cfg
 config/mongodb.conf
 config/redis.conf
 config/config.js

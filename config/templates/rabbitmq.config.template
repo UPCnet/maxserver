@@ -1,8 +1,8 @@
 [
     {rabbit, [
         {auth_backends, [rabbit_auth_backend_internal,rabbit_auth_backend_max]},
-        {vm_memory_high_watermark, ${rabbitmq:vm_memory_high_watermark}},
-        {vm_memory_high_watermark_paging_ratio, ${rabbitmq:vm_memory_high_watermark_paging_ratio}}
+        {vm_memory_high_watermark, ${rabbitmq-config:vm_memory_high_watermark}},
+        {vm_memory_high_watermark_paging_ratio, ${rabbitmq-config:vm_memory_high_watermark_paging_ratio}}
     ]},
     {rabbitmq_management, [
         {listener, [{port, ${ports:rabbitmq-manage}}]},

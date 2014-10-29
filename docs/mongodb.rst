@@ -9,12 +9,13 @@ setup steps on each server::
     cd /var/mongodb
     /var/python/python2.7/bin/python bootstrap.py -c mongodb-only.cfg
 
-Edit customizeme.cfg and modify the followig options, each in its correct section::
+Edit customizeme.cfg and modify the following options, each in its correct section::
 
     [hosts]
     main = server.name.com
 
     [ports]
+    circus = 8081
     circus-endpoint = 28081
     circus-pubsub = 28082
     circus-stats = 28083
@@ -30,7 +31,7 @@ access the database the very first time::
     #    authorization: enabled
     #    keyFile: /var/mongodb/var/mongodb-keyfile
 
-Create init script for the mongodb instance, at ``/etc/init.d/mongodb``. Use this snipped as a template::
+Create init script for the mongodb instance, at ``/etc/init.d/mongodb``. Use this snippet as a template::
 
     #!/bin/sh
     # chkconfig: - 85 15

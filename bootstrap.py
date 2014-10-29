@@ -66,10 +66,15 @@ options, args = parser.parse_args()
 
 def install_configfile(source, destination):
     """
-        Install a configfile from a template
+        Install a configfile from a template, only when destination file doesn't exists.
+        Generates an empty file if source is not defined
+
     """
     if not os.path.exists(destination):
-        shutil.copyfile(source, destination)
+        if source:
+            shutil.copyfile(source, destination)
+        else:
+            open(destination, 'w').write()
         print 'Generated config file {}'.format(os.path.realpath(destination))
         return True
 
@@ -85,6 +90,13 @@ if install_configfile(*mongoauth_configfiles):
         content = open(mongoauth_configfiles[1]).read()
         open(mongoauth_configfiles[1], 'w').write(content.replace('enabled=true', 'enabled=false'))
 
+#Initialize customizeme.cfg if a matching template is found
+customizeme_template = 'config/templates/customizeme-{}'.format(options.config_file)
+if os.path.exists(customizeme_template):
+    install_configfile(customizeme_template, 'customizeme.cfg')
+# otherwise set it empty if it doesn't exist yet.
+else:
+    install_configfile(None, 'customizeme.cfg')
 
 ######################################################################
 # load/install setuptools

@@ -10,9 +10,7 @@ System dependencies
 
 * Install OS library dependencies (for Ubuntu systems)::
 
-    apt-get install zlib1g-dev build-essential libldap2-dev libsasl2-dev libncurses5-dev xsltproc zip
-    libreadline6-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libssl-dev
-    tk-dev libgdbm-dev libc6-dev libbz2-dev libxslt1-dev libpcre3-dev libjpeg62-dev libzlcore-dev libfreetype6-dev erlang
+    apt-get install zlib1g-dev build-essential libldap2-dev libsasl2-dev libncurses5-dev xsltproc zip libreadline6-dev libncurses5-dev libncursesw5-dev libsqlite3-dev libssl-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libxslt1-dev libpcre3-dev libjpeg62-dev libzlcore-dev libfreetype6-dev libffi-dev erlang libtiff5-dev
 
 * Install OS library dependencies (for OSX systems)::
 

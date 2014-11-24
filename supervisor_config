@@ -1,0 +1,22 @@
+import os
+import ConfigParser
+# Cd 2 folders avobe
+base_path = os.getcwd().split('/')[:-2]
+config_files = ['{}/supervisord.conf'.format(root) for root, dirs, files in os.walk('/'.join(base_path)) if 'supervisord.conf' in files]
+
+output = ConfigParser.ConfigParser()
+
+for cfg in config_files:
+    config = ConfigParser.ConfigParser()
+    config.read(cfg)
+
+    for section in config.sections():
+        if section not in output.sections():
+            output.add_section(section)
+
+        for option in config.options(section):
+            output.set(section, config.get(section, option))
+
+with open('config/supervisord.conf', 'w') as out_cfg:
+    output.write(out_cfg)
+

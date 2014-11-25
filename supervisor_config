@@ -35,7 +35,7 @@ def configure_supervisor():
     for cfg in config_files:
         if not os.path.exists(cfg):
             print "> Config file {} doesn't exists".format(cfg)
-            break
+            continue
 
         print '> Parsing {}'.format(cfg)
 
@@ -51,7 +51,7 @@ def configure_supervisor():
             # Ignore [program*] sections from master config file
             is_program_section = 'program' in section
             if ignore_programs and is_program_section:
-                break
+                continue
 
             # Rename section names that include chaussette as a wsgi server
             # to use de fcgi supervisor configuration

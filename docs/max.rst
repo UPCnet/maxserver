@@ -12,20 +12,28 @@ Edit ``/var/{server_dns}/{instance_name}/mongoauth.cfg`` and fill in the passwor
 
 Edit customizeme.cfg and modify the following options, each in its correct section. The port index must be a number, starting at 1, that will be added to 10000 to calculate the real port. Each instance must have a different port_index::
 
+    [max-config]
+    name = {instance_name}
+    cluster_enabled = true
+    use_osiris = true
+
     [hosts]
     main = {server_dns},
     rabbitmq = {rabbit_server},
+    oauth = {oauth_hostname}
     mongodb_cluster = cluster1:27017,cluster2:27017,cluster3:27017
 
-    [max-config]
-    name = {instance_name}
+    [rabbitmq-config]
+    username =
+    password =
 
     [ports]
     port_index =  {port_index}
 
     [urls]
-    oauth = {oauth_url}
-    rabbit = amqp://admin:{rabbitmq_password}@{rabbit_server}:5672/%2F
+    # Override oauth url ONLY if server url doesn't match
+    # pattern https://SERVER_NAME/DOMAIN
+    oauth = https://${hosts:oauth}/${max-config:name}
 
 Set the correct type of oauth server only if you are **NOT** a osiris server::
 

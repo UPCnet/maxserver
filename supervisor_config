@@ -6,6 +6,10 @@ SUPERVISOR_SETTINGS = 'customizeme.cfg'
 SUPERVISOR_CONFIG = 'parts/supervisor/supervisord.conf'
 
 
+def find_config_files(path):
+    return ['{}/supervisord.conf'.format(root) for root, dirs, files in os.walk('/'.join(path)) if 'supervisord.conf' in files]
+
+
 def configure_supervisor():
     """
         Merges supervisord configuration files
@@ -13,17 +17,28 @@ def configure_supervisor():
 
     # Extract paths from files that must be merged
     # from the [supervisor].parts option of the customizeme.cfg file
+    # Items can be paths where to look for files or individual files
 
     customizeme = ConfigParser.ConfigParser()
     customizeme.read(SUPERVISOR_SETTINGS)
     parts = customizeme.get('supervisor', 'parts')
-    config_files = list(set([path.strip() for path in parts.split('\n')]))
+    config_sources = list(set([path.strip() for path in parts.split('\n')]))
 
     # If no paths privided, search for config files
     # starting 2 folders avobe
-    if not config_files:
+
+    if not config_sources:
         base_path = os.getcwd().split('/')[:-2]
-        config_files = ['{}/supervisord.conf'.format(root) for root, dirs, files in os.walk('/'.join(base_path)) if 'supervisord.conf' in files]
+        config_sources.append(base_path)
+
+    # Search in sources. If sources is a path, search all supervisord.conf
+    # files in the tree , otherwise add the source directly
+    config_files = []
+    for source in config_sources:
+        if os.path.isdir(source):
+            config_files += find_config_files(source)
+        else:
+            config_files.append(source)
 
     # Add main supervisor config file first
     config_files.insert(0, SUPERVISOR_CONFIG)

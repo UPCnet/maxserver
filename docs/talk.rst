@@ -12,6 +12,7 @@ Configure customizeme.cfg modifying the following options::
 
     [maxbunny-config]
     default_domain = {domain_name}
+    plugins =
 
     [hosts]
     main = {rabbit_server}
@@ -20,6 +21,10 @@ Configure customizeme.cfg modifying the following options::
     [urls]
     max = {max_server_base_url}
     oauth = {oauth_server_base_url}
+
+On the plugins option, specify which plugins you want maxbunny to start. Avaliable plugins are ``conversations``, ``push``, and ``tweety``. Separate each plugin with commas and optionally specify the number of workers of each one. For example:
+
+    plugins = conversations:4,push
 
 Execute buildout::
 

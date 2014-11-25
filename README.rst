@@ -39,12 +39,13 @@ The following files are used for development and debugging:
 These other files are used to deploy a single component of the stack, all
 meant to be used in a production environment:
 
-- `max-only.cfg <docs/max.rst>`_ - Deploys a max instance
-- `bigmax-only.cfg <docs/bigmax.rst>`_ - Deploys a bigmax instance
-- `mongodb-only.cfg <docs/mongodb.rst>`_ - Deploys a mongodb cluster
+- `max-only.cfg <docs/max.rst>`_ - Deploy a max instance
+- `bigmax-only.cfg <docs/bigmax.rst>`_ - Deploy a bigmax instance
+- `mongodb-only.cfg <docs/mongodb.rst>`_ - Deploy a mongodb cluster
 - `nginx-only.cfg <docs/nginx.rst>`_ - Deploy a nginx server for max
 - `osiris-only.cfg <docs/osiris.rst>`_ - Deploy a osiris oauth server for max
 - `talk-only.cfg <docs/talk.rst>`_ - Deploy RabbitMQ and queue processing tools
+- `supervisor-only.cfg <docs/supervisor.rst>`_ - Deploy a one-for-all supervisor
 
 
 And finally there's a jenkins.cfg configuration, that is similar to devel.cfg, only to be used inside jenkins CI.

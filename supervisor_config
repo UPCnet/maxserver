@@ -1,12 +1,34 @@
 import os
 import ConfigParser
-# Cd 2 folders avobe
-base_path = os.getcwd().split('/')[:-2]
-config_files = ['{}/supervisord.conf'.format(root) for root, dirs, files in os.walk('/'.join(base_path)) if 'supervisord.conf' in files]
+
+SUPERVISOR_SETTINGS = 'customizeme.cfg'
+SUPERVISOR_BASE_CONFIG = 'parts/supervisor/supervisord.conf'
+SUPERVISOR_MAIN_CONFIG = 'config/supervisord.conf'
+
+customizeme = ConfigParser.ConfigParser()
+customizeme.read(SUPERVISOR_SETTINGS)
+
+print
+
+parts = customizeme.get('supervisor', 'parts')
+config_files = list(set([path.strip() for path in parts.split('\n')]))
+
+
+if not config_files:
+    # Search for config files starting 2 folders avobe
+    base_path = os.getcwd().split('/')[:-2]
+    config_files = ['{}/supervisord.conf'.format(root) for root, dirs, files in os.walk('/'.join(base_path)) if 'supervisord.conf' in files]
+
+config_files.insert(0, SUPERVISOR_BASE_CONFIG)
 
 output = ConfigParser.ConfigParser()
 
 for cfg in config_files:
+    if not os.path.exists(cfg):
+        print "> Config file {} doesn't exists".format(cfg)
+        break
+
+    print '> Parsing {}'.format(cfg)
     config = ConfigParser.ConfigParser()
     config.read(cfg)
 
@@ -15,8 +37,10 @@ for cfg in config_files:
             output.add_section(section)
 
         for option in config.options(section):
-            output.set(section, config.get(section, option))
+            output.set(section, option, config.get(section, option))
 
-with open('config/supervisord.conf', 'w') as out_cfg:
+with open(SUPERVISOR_MAIN_CONFIG, 'w') as out_cfg:
     output.write(out_cfg)
+    print '> Writen {}'.format(SUPERVISOR_MAIN_CONFIG)
 
+print

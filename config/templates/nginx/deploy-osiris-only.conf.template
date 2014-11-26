@@ -1,0 +1,55 @@
+# Set another default user than root for security reasons (only in production)
+user pyramid;
+
+# As a thumb rule: One per CPU. If you are serving a large amount
+# of static files, which requires blocking disk reads, you may want
+# to increase this from the number of cpu_cores available on your
+# system.
+#
+# The maximum number of connections for Nginx is calculated by:
+# max_clients = worker_processes * worker_connections
+worker_processes 2;
+daemon on;
+
+# Maximum file descriptors that can be opened per process
+# This should be > worker_connections
+worker_rlimit_nofile 8192;
+
+events {
+  # When you need > 8000 * cpu_cores connections, you start optimizing
+  # your OS, and this is probably the point at where you hire people
+  # who are smarter than you, this is *a lot* of requests.
+  worker_connections  8000;
+}
+
+# Change these paths to somewhere that suits you!
+pid ${buildout:directory}/var/nginx.pid;
+error_log ${buildout:directory}/var/log/nginx.error.log;
+
+http {
+
+  ssl_certificate       ${nginx-config-max:certificate};
+  ssl_certificate_key   ${nginx-config-max:certificate-key};
+
+  map $scheme $server_https {
+     default off;
+     https on;
+  }
+
+  include       ${buildout:directory}/config/nginx/nginx-mime.types;
+  include       ${buildout:directory}/config/nginx/common-settings.conf;
+  include       ${buildout:directory}/config/nginx/upstream-servers.conf;
+
+  server {
+       # Redirect http traffic to https
+      listen     80;
+      server_name ${hosts:oauth};
+      rewrite ^(.*)$ https://$server_name$1 last;
+  }
+
+  # Osiris server
+  include       ${buildout:directory}/config/nginx/osiris-server.conf;
+
+  # Include other virtualhosts
+  include ${buildout:directory}/config/sites-enabled/*;
+}

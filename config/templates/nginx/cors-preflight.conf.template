@@ -1,0 +1,17 @@
+    location / {
+
+        # CORS PreFlight
+        if ($request_method = 'OPTIONS') {
+
+            # Tell client that this pre-flight info is valid for 20 days
+            add_header 'Access-Control-Max-Age' 1728000;
+            add_header 'Content-Type' 'text/plain charset=UTF-8';
+            add_header 'Content-Length' 0;
+
+            return 200;
+        }
+
+        # checks for static file, if not found proxy to app
+        try_files $uri @proxy_to_app;
+
+    }

@@ -1,0 +1,55 @@
+  # And the fallback mime-type
+  default_type  application/octet-stream;
+
+  # Format for our log files
+  log_format   main '[$time_local] - $remote_addr - $body_bytes_sent '
+    '$request_method "$request" $status "$http_x_oauth_username"';
+
+  # Click tracking!
+  access_log   ${buildout:directory}/var/log/nginx.access.log  main;
+
+  # ~2 seconds is often enough for HTML/CSS, but connections in
+  # Nginx are cheap, so generally it's safe to increase it
+  keepalive_timeout 20;
+
+  # You usually want to serve static files with Nginx
+  sendfile on;
+
+  tcp_nopush on; # off may be better for Comet/long-poll stuff
+  tcp_nodelay off; # on may be better for Comet/long-poll stuff
+
+  # Enable Gzip:
+  gzip on;
+  gzip_http_version 1.0;
+  gzip_comp_level 5;
+  gzip_min_length 512;
+  gzip_buffers 16 8k;
+  gzip_proxied any;
+  gzip_types
+    # text/html is always compressed by HttpGzipModule
+    text/css
+    text/javascript
+    text/xml
+    text/plain
+    text/x-component
+    application/javascript
+    application/x-javascript
+    application/json
+    application/xml
+    application/rss+xml
+    font/truetype
+    font/opentype
+    application/vnd.ms-fontobject
+    image/svg+xml;
+
+  # This should be turned on if you are going to have pre-compressed copies (.gz) of
+  # static files available. If not it should be left off as it will cause extra I/O
+  # for the check. It would be better to enable this in a location {} block for
+  # a specific directory:
+  # gzip_static on;
+
+  gzip_disable        "MSIE [1-6]\.";
+  gzip_vary           on;
+
+  # Allow to directly stream medium size files (static resources directly from the upstream server without buffering
+  proxy_buffers              4 32k;

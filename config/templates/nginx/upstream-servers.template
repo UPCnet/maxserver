@@ -1,0 +1,15 @@
+  upstream max_server {
+    server ${hosts:max}:${ports:max} fail_timeout=0;
+  }
+
+  upstream bigmax_server {
+    server ${hosts:bigmax}:${ports:bigmax} fail_timeout=0;
+  }
+
+  upstream rabbitmq_web_stomp_server {
+    server ${hosts:rabbitmq}:${ports:rabbitmq-web-stomp} fail_timeout=0;
+  }
+
+  upstream osiris_server {
+    server ${hosts:oauth}:${ports:osiris} fail_timeout=0;
+  }

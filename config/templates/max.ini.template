@@ -29,9 +29,9 @@ file_repository = ${buildout:directory}/var/repository
 
 mongodb.url = ${urls:mongo}
 mongodb.db_name = max_${max-config:name}
-mongodb.cluster = ${max-config:cluster_enabled}
-mongodb.hosts = ${hosts:mongodb_cluster}
-mongodb.replica_set = maxcluster
+mongodb.cluster = ${mongodb-config:cluster_enabled}
+mongodb.hosts = ${mongodb-config:cluster_hosts}
+mongodb.replica_set = ${mongodb-config:replica_set}
 mongodb.auth = ${mongo-auth:enabled}
 mongodb.authdb = ${mongo-auth:authdb}
 mongodb.username = ${mongo-auth:username}

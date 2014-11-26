@@ -9,11 +9,11 @@ storage:
     directoryPerDB: true
 
 replication:
-    replSetName: maxcluster
+    replSetName: ${mongodb-config:replica_set}
 
 security:
     authorization: enabled
-    keyFile: /var/mongodb/var/mongodb-keyfile
+    keyFile: ${buildout:directory}/var/mongodb-keyfile
 
 systemLog:
     destination: file

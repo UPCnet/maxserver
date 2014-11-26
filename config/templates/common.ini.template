@@ -6,9 +6,9 @@ manage = ${urls:rabbit-manage}
 [mongodb]
 url = ${urls:mongo}
 db_name = max_${max-config:name}
-cluster = ${max-config:cluster_enabled}
-hosts = ${hosts:mongodb_cluster}
-replica_set = maxcluster
+cluster = ${mongodb-config:cluster_enabled}
+hosts = ${mongodb-config:cluster_hosts}
+replica_set = ${mongodb-config:replica_set}
 
 [max]
 server = ${urls:max}

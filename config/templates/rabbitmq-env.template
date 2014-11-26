@@ -2,7 +2,7 @@
 
 BUILDOUT_DIR="${buildout:directory}"
 RABBITMQ_HOME="${rabbitmq-config:home}"
-SCRIPT_DIR="${rabbitmq-config:scripts}}"
+SCRIPT_DIR="${rabbitmq-config:scripts}"
 NODENAME="${rabbitmq-config:nodename}"
 NODE_PORT=${ports:rabbitmq}
 

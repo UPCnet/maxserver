@@ -5,7 +5,7 @@
   log_format   main '[$time_local] - $remote_addr - $body_bytes_sent '
     '$request_method "$request" $status "$http_x_oauth_username"';
 
-  # Click tracking!
+  # Click tracking of all requests not logged to other files
   access_log   ${buildout:directory}/var/log/nginx.access.log  main;
 
   # ~2 seconds is often enough for HTML/CSS, but connections in

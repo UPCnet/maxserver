@@ -24,7 +24,6 @@ events {
 
 # Change these paths to somewhere that suits you!
 pid ${buildout:directory}/var/nginx.pid;
-error_log ${buildout:directory}/var/log/nginx.error.log;
 
 http {
 

@@ -1,6 +1,6 @@
   server {
     listen ${ports:nginx};
-    server_name ${hosts:max};
+    server_name ${hosts:oauth};
     ssl on;
 
     client_max_body_size 42k;

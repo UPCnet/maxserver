@@ -57,6 +57,9 @@ http {
   # Max server & bigmax
   include       ${buildout:directory}/config/nginx/max-server.conf;
 
+  # Osiris server
+  include       ${buildout:directory}/config/nginx/osiris-server.conf;
+
   # Include other virtualhosts
   include ${buildout:directory}/config/sites-enabled/*;
 }

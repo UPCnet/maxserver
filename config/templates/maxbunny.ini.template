@@ -8,9 +8,9 @@ plugins = ${maxbunny-config:plugins}
 default_domain = ${maxbunny-config:default_domain}
 logging_folder = ${buildout:directory}/var/log
 
-smtp_server = localhost
-notify_address =
-notify_recipients =
+smtp_server = ${maxbunny-config:smtp_server}
+notify_address = ${maxbunny-config:notify_address}
+notify_recipients = ${maxbunny-config:notify_recipients}
 
 # Begin logging configuration
 

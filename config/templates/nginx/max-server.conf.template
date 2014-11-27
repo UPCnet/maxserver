@@ -6,6 +6,9 @@
     client_max_body_size 500M;
     charset utf-8;
 
+    # Backward-compatibility guard for mobile apps
+    more_set_headers 'X-Max-Compat-ID: ${max-config:compat_id}';
+
     # ADD CORS headers to responses
     include ${buildout:directory}/config/nginx/cors-headers.conf;
 

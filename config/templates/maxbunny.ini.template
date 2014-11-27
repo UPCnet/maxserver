@@ -5,7 +5,6 @@ common = ${buildout:directory}/config/common.ini
 cloudapis = ${buildout:directory}/config/cloudapis.ini
 instances = ${buildout:directory}/config/instances.ini
 plugins = ${maxbunny-config:plugins}
-workers = ${maxbunny-config:workers}
 default_domain = ${maxbunny-config:default_domain}
 logging_folder = ${buildout:directory}/var/log
 

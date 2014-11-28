@@ -9,6 +9,10 @@ db_name = max_${max-config:name}
 cluster = ${mongodb-config:cluster_enabled}
 hosts = ${mongodb-config:cluster_hosts}
 replica_set = ${mongodb-config:replica_set}
+auth = ${mongo-auth:enabled}
+authdb = ${mongo-auth:authdb}
+username = ${mongo-auth:username}
+password = ${mongo-auth:password}
 
 [max]
 server = ${urls:max}

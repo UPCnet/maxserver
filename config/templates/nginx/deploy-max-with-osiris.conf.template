@@ -27,8 +27,7 @@ pid ${buildout:directory}/var/nginx.pid;
 
 http {
 
-  ssl_certificate       ${nginx-config-max:certificate};
-  ssl_certificate_key   ${nginx-config-max:certificate-key};
+  include       ${buildout:directory}/config/nginx/ssl-settings.conf;
 
   map $scheme $server_https {
      default off;

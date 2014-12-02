@@ -6,7 +6,7 @@
 # The maximum number of connections for Nginx is calculated by:
 # max_clients = worker_processes * worker_connections
 worker_processes 2;
-daemon on;
+daemon off;
 
 # Maximum file descriptors that can be opened per process
 # This should be > worker_connections

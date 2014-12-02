@@ -1,6 +1,6 @@
     location ~* ^/stomp {
-        access_log   ${buildout:directory}/var/log/nginx.stomp.access.log  main;
-        proxy_set_header X-Virtual-Host-URI $scheme://${hosts:max};
+        access_log   {{parts.buildout.directory}}/var/log/nginx.stomp.access.log  main;
+        proxy_set_header X-Virtual-Host-URI $scheme://{{parts.hosts.max}}{% if parts.ports.nginx != 443 %}:{{parts.ports.nginx}}{% endif %};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_redirect off;
@@ -11,8 +11,8 @@
      }
 
     location ~* ^/(?!contexts|people|activities|conversations|messages|admin|info).*$ {
-        access_log   ${buildout:directory}/var/log/nginx.bigmax.access.log  main;
-        proxy_set_header X-Virtual-Host-URI $scheme://${hosts:max};
+        access_log   {{parts.buildout.directory}}/var/log/nginx.bigmax.access.log  main;
+        proxy_set_header X-Virtual-Host-URI $scheme://{{parts.hosts.max}}{% if parts.ports.nginx != 443 %}:{{parts.ports.nginx}}{% endif %};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_redirect off;
@@ -20,8 +20,8 @@
      }
 
     location @proxy_to_app {
-        access_log   ${buildout:directory}/var/log/nginx.max.access.log  main;
-        proxy_set_header X-Virtual-Host-URI $scheme://${hosts:max};
+        access_log   {{parts.buildout.directory}}/var/log/nginx.max.access.log  main;
+        proxy_set_header X-Virtual-Host-URI $scheme://{{parts.hosts.max}}{% if parts.ports.nginx != 443 %}:{{parts.ports.nginx}}{% endif %};
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_redirect off;

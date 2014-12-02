@@ -20,7 +20,7 @@ Edit customizeme.cfg and modify the followig options, each in its correct sectio
     nginx = 443
     bigmax = 11001
 
-    [nginx-config-max]
+    [nginx-config]
     certificate = /path/to/certificate
     certificate-key = /path/to/certificate-priv-key
 

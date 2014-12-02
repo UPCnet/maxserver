@@ -1,5 +1,5 @@
-  ssl_certificate       ${nginx-config-max:certificate};
-  ssl_certificate_key   ${nginx-config-max:certificate-key};
+  ssl_certificate       ${nginx-config:certificate};
+  ssl_certificate_key   ${nginx-config:certificate-key};
 
   # Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
   ssl_dhparam ssl/dhparam.pem;

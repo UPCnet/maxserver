@@ -10,8 +10,7 @@
       include /var/nginx/config/nginx/bypass-acl.conf;
 
       {% for item in parts['osiris-config'].bypass_ips|split %}allow {{item}};
-      {% endfor%}
-      deny all;
+      {% endfor%}deny all;
 
       proxy_set_header X-Virtual-Host-URI $scheme://{{parts.hosts.oauth}}{% if parts.ports.nginx != 443 %}:{{parts.ports.nginx}}{% endif %};
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

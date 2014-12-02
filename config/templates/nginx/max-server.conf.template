@@ -2,10 +2,7 @@
     listen {{parts.ports.nginx}};
     server_name {{parts.hosts.max}};
 
-    {% if parts.ports.nginx == 443 %}
-    ssl on;
-    {% endif %}
-
+    {% if parts.ports.nginx == '443' %}ssl on;{% endif %}
 
     client_max_body_size 500M;
     charset utf-8;

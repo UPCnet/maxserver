@@ -1,0 +1,91 @@
+[supervisord]
+childlogdir = ${buildout:directory}/var/log
+logfile = ${buildout:directory}/var/log/supervisord.log
+logfile_maxbytes = 50MB
+logfile_backups = 10
+loglevel = info
+pidfile = ${buildout:directory}/var/supervisord.pid
+umask = 022
+nodaemon = false
+nocleanup = false
+environment = ${supervisor-config:environment}
+
+
+[inet_http_server]
+port = ${ports:supervisor}
+username = ${supervisor-config:user}
+password = ${supervisor-config:password}
+
+
+[supervisorctl]
+serverurl = ${supervisor-config:serverurl}
+username = ${supervisor-config:user}
+password = ${supervisor-config:password}
+
+
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory=supervisor.rpcinterface:make_main_rpcinterface
+
+
+[program:mongodb]
+command = ${buildout:directory}/bin/mongod --config ${buildout:directory}/config/mongodb.conf
+process_name = mongodb
+directory = ${buildout:directory}/bin
+priority = 10
+
+
+[program:rabbitmq]
+command = ${buildout:directory}/bin/rabbitmq-server
+process_name = rabbitmq
+directory = ${buildout:directory}/bin
+priority = 10
+
+
+[fcgi-program:max]
+command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/max.ini
+process_name = max
+directory = ${buildout:directory}/bin
+priority = 20
+numprocs = 1
+socket = tcp://0.0.0.0:${ports:max}
+
+
+[fcgi-program:osiris]
+command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/osiris.ini
+process_name = osiris
+directory = ${buildout:directory}/bin
+priority = 20
+numprocs = 1
+socket = tcp://0.0.0.0:${ports:osiris}
+
+
+[fcgi-program:bigmax]
+command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/bigmax.ini
+process_name = bigmax
+directory = ${buildout:directory}/bin
+priority = 20
+numprocs = 1
+socket = tcp://0.0.0.0:${ports:bigmax}
+
+
+[program:nginx]
+command = ${buildout:directory}/parts/nginx/sbin/nginx -c ${buildout:directory}/config/nginx.conf
+process_name = nginx
+directory = ${buildout:directory}/parts/nginx/sbin
+priority = 40
+
+
+[program:maxbunny]
+command = ${buildout:directory}/bin/maxbunny -c ${buildout:directory}/config/maxbunny.ini
+process_name = maxbunny
+directory = ${buildout:directory}/bin
+priority = 60
+autostart = true
+
+
+[program:maxtweety]
+command = ${buildout:directory}/bin/maxtweety -c ${buildout:directory}/config/maxtweety.ini
+process_name = maxtweety
+directory = ${buildout:directory}/bin
+priority = 60
+autostart = false

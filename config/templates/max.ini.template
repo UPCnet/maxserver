@@ -45,7 +45,7 @@ port = ${ports:max}
 # Begin logging configuration
 
 [loggers]
-keys = root, max, exceptions
+keys = root, max, exceptions, requestdump
 
 [handlers]
 keys = console, exceptionlog
@@ -61,6 +61,12 @@ handlers = console
 level = WARN
 handlers =
 qualname = max
+propagate=0
+
+[logger_requestdump]
+level = INFO
+handlers = console_clean
+qualname = requestdump
 propagate=0
 
 [logger_exceptions]
@@ -79,6 +85,12 @@ class = StreamHandler
 args = (sys.stderr,)
 level = NOTSET
 formatter = generic
+
+[handler_console_clean]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = clean
 
 [formatter_clean]
 format = %(message)s

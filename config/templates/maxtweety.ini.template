@@ -47,13 +47,13 @@ formatter = clean
 
 [handler_tweety]
 level = INFO
-class = WatchedFileHandler
+class = handlers.WatchedFileHandler
 args = ('${buildout:directory}/var/log/maxtweety.log', 'a')
 formatter = generic
 
 [handler_twitterlistener]
 level = INFO
-class = WatchedFileHandler
+class = handlers.WatchedFileHandler
 args = ('${buildout:directory}/var/log/twitter-listener.log', 'a')
 formatter = clean
 

@@ -47,7 +47,7 @@ formatter = clean
 
 [handler_bunny]
 level = INFO
-class = WatchedFileHandler
+class = handlers.WatchedFileHandler
 args = ('${buildout:directory}/var/log/maxbunny.log', 'a')
 formatter = generic
 
@@ -58,7 +58,7 @@ qualname = requeues
 
 [handler_requeuelog]
 level = DEBUG
-class = WatchedFileHandler
+class = handlers.WatchedFileHandler
 args = ('${buildout:directory}/var/log/requeues.log', 'a')
 formatter = cleaner
 

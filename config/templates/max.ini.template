@@ -76,7 +76,7 @@ qualname = exceptions
 
 [handler_exceptionlog]
 level = DEBUG
-class = FileHandler
+class = WatchedFileHandler
 args = ('${buildout:directory}/var/log/exceptions.log', 'a')
 formatter = clean
 

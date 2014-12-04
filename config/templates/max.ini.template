@@ -48,7 +48,7 @@ port = ${ports:max}
 keys = root, max, exceptions, requestdump
 
 [handlers]
-keys = console, exceptionlog, console_clean
+keys = console, exceptionlog, conclean
 
 [formatters]
 keys = generic, clean
@@ -64,8 +64,8 @@ qualname = max
 propagate=0
 
 [logger_requestdump]
-level = INFO
-handlers = console_clean
+level = DEBUG
+handlers = conclean
 qualname = requestdump
 propagate=0
 
@@ -86,7 +86,7 @@ args = (sys.stderr,)
 level = NOTSET
 formatter = generic
 
-[handler_console_clean]
+[handler_conclean]
 class = StreamHandler
 args = (sys.stderr,)
 level = NOTSET

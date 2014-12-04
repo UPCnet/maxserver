@@ -48,7 +48,7 @@ port = ${ports:max}
 keys = root, max, exceptions, requestdump
 
 [handlers]
-keys = console, exceptionlog
+keys = console, exceptionlog, console_clean
 
 [formatters]
 keys = generic, clean

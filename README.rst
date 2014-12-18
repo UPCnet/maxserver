@@ -42,10 +42,15 @@ meant to be used in a production environment:
 - `max-only.cfg <docs/max.rst>`_ - Deploy a max instance
 - `bigmax-only.cfg <docs/bigmax.rst>`_ - Deploy a bigmax instance
 - `mongodb-only.cfg <docs/mongodb.rst>`_ - Deploy a mongodb cluster
-- `nginx-only.cfg <docs/nginx.rst>`_ - Deploy a nginx server for max
 - `osiris-only.cfg <docs/osiris.rst>`_ - Deploy a osiris oauth server for max
+
 - `talk-only.cfg <docs/talk.rst>`_ - Deploy RabbitMQ and queue processing tools
-- `supervisor-only.cfg <docs/supervisor.rst>`_ - Deploy a one-for-all supervisor
+- `rabbit-only.cfg <docs/rabbit.rst>`_ - Deploy RabbitMQ
+- `bunny-only.cfg <docs/bunny.rst>`_ - Deploy queue & twitter processing tools
+
+- `nginx-max-only.cfg <docs/nginx-max.rst>`_ - Deploy a nginx server for max
+- `nginx-osiris-only.cfg <docs/nginx-osiris.rst>`_ - Deploy a nginx server for osiris
+- `nginx-max-with-osiris.cfg <docs/nginx-max-osiris.rst>`_ - Deploy a nginx server for max & osiris together on the same machine
 
 
 And finally there's a jenkins.cfg configuration, that is similar to devel.cfg, only to be used inside jenkins CI.

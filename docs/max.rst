@@ -10,32 +10,37 @@ A server can hold several max server instances. We will centralize all instances
 
 Edit ``/var/{server_dns}/{instance_name}/mongoauth.cfg`` and fill in the password for the admin user of cluster in use.
 
-Edit customizeme.cfg and modify the following options, each in its correct section. The port index must be a number, starting at 1, that will be added to 10000 to calculate the real port. Each instance must have a different port_index::
+Edit customizeme.cfg and modify the following options, each in its correct section. The port index must be a 2 digits, zero-padded number, starting at 1, that will be added to 10000 to calculate the real port. Each instance must have a different port_index::
 
-    [max-config]
-    name = {instance_name}
-    cluster_enabled = true
-    use_osiris = true
+[max-config]
+name =
+use_osiris = true
+compat_id = 2
 
-    [hosts]
-    main = {server_dns},
-    rabbitmq = {rabbit_server},
-    oauth = {oauth_hostname}
-    mongodb_cluster = cluster1:27017,cluster2:27017,cluster3:27017
+[mongodb-config]
+cluster_enabled = true
+cluster_hosts =
+replica_set =
 
-    [rabbitmq-config]
-    username =
-    password =
+[rabbitmq-config]
+username =
+password =
 
-    [ports]
-    port_index =  {port_index}
+[hosts]
+max =
+rabbitmq =
+oauth =
 
-    [urls]
-    # Override oauth url ONLY if server url doesn't match
-    # pattern https://SERVER_NAME/DOMAIN
-    oauth = https://${hosts:oauth}/${max-config:name}
+[ports]
+port_index =
 
-Set the correct type of oauth server only if you are **NOT** a osiris server::
+[urls]
+# Override oauth url ONLY if server url doesn't match
+# pattern https://SERVER_NAME/DOMAIN
+oauth = https://${hosts:oauth}/${max-config:name}
+
+
+Set the correct type of oauth server only if you are **NOT** using a osiris server::
 
     [max-config]
     use_osiris = false

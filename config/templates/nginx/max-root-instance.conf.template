@@ -1,3 +1,8 @@
+    {% if parts.ports.nginx != '443' %}
+    location ^~ /maxui-dev/ {
+        alias   {{parts.buildout.directory}}/src/max.ui.js/;
+    } {% endif %}
+
     location ~* ^/stomp {
         access_log   {{parts.buildout.directory}}/var/log/nginx.stomp.access.log  main;
         proxy_set_header X-Virtual-Host-URI $scheme://{{parts.hosts.max}}{% if parts.ports.nginx != '443' %}:{{parts.ports.nginx}}{% endif %};

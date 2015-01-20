@@ -12,6 +12,7 @@ activity:object._hashtags
 activity:contexts.url
 activity:visible
 activity:verb
+activity:flagged
 
 conversations:participants
 conversations.objectType

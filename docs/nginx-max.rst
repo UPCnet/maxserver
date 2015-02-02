@@ -24,6 +24,11 @@ Edit customizeme.cfg and modify the followig options, each in its correct sectio
     certificate = /path/to/certificate
     certificate-key = /path/to/certificate-priv-key
 
+
+Generate a new dhparams.pem file for this server
+
+    openssl dhparam -out config/ssl/dhparam.pem 2048
+
 then proceed to execute buildout::
 
     ./bin/buildout -c nginx-only.cfg

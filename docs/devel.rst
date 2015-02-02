@@ -1,10 +1,24 @@
 Setup a development max server
 ==============================
 
-- Bootstrap and execute buildout::
+- Bootstrap and buildout::
 
     python bootstrap.py -c devel.cfg
-    ./bin/buildout -c configfile.cfg
+
+The generated customizeme.cfg file has sensible defaults for a develompent environment, that you're welcome to modify to suit your needs. If you're ok with the defaul settings you can skint until the buildout execution setp.
+
+One of the thing you may want to modify is to enable ssl in devel deployment. For this there are serveral settings you need to modify in customize.cfg:
+
+    TODO: list of settings to modify
+
+And also you'll need to generate a ``dhparam.pem`` file for this server with the following command:
+
+    openssl dhparam -out config/ssl/dhparam.pem 2048
+
+
+- Execute buildout::
+
+    ./bin/buildout -c devel.cfg
 
 
 - Start supervisor::

@@ -24,13 +24,13 @@ pid {{parts.buildout.directory}}/var/nginx.pid;
 
 http {
 
-  {% if parts.ports.nginx != '443' %}
+  {% if parts.ports.nginx == '443' %}
   include       {{parts.buildout.directory}}/config/nginx/ssl-settings.conf;
 
   map $scheme $server_https {
      default off;
      https on;
-  }{% endif %};
+  }{% endif %}
 
   include       {{parts.buildout.directory}}/config/nginx/nginx-mime.types;
   include       {{parts.buildout.directory}}/config/nginx/common-settings.conf;

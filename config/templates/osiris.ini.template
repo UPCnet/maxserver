@@ -33,7 +33,7 @@ osiris.ldapconfig = %(here)s/ldap.ini
 
 [server:main]
 use = egg:waitress#main
-host = ${hosts:main}
+host = 0.0.0.0
 port = ${ports:osiris}
 
 # Begin logging configuration

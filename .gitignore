@@ -68,3 +68,5 @@ src
 erl_crash.dump
 .erlang.cookie
 dump.rdb
+*.swp
+*.swo

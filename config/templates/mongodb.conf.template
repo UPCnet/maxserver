@@ -9,7 +9,7 @@ storage:
     directoryPerDB: true
 
 replication:
-    replSetName: ${mongodb-config:replica_set}
+    replSetName: ${mongo-config:replica_set}
 
 security:
     authorization: enabled

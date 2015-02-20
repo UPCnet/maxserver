@@ -11,7 +11,7 @@ pyramid.includes = pyramid_tm
                    pyramid_chameleon
 
 # MAX and LDAP config
-max.default = ${urls:max}/${bigmax-config:default}
+max.default = ${bigmax-config:default}
 max.instances = ${buildout:directory}/config/instances.ini
 
 # Beaker config

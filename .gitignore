@@ -47,6 +47,7 @@ var/avatars
 var/sessions
 var/rabbitmq/mnesia
 var/rabbitmq/home
+var/*.sqlite
 
 config/supervisord.conf
 config/mongodb.conf

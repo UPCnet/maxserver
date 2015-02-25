@@ -1,0 +1,79 @@
+[app:main]
+use = egg:ulearnhub
+
+pyramid.reload_templates = ${max-config:development}
+pyramid.debug_templates = ${max-config:development}
+pyramid.debug_authorization = false
+pyramid.debug_notfound = false
+pyramid.debug_routematch = false
+pyramid.default_locale_name = en
+pyramid.includes =
+    pyramid_tm
+
+sqlalchemy.url = sqlite:///${buildout:directory}/var/ulearnhub.sqlite
+
+[server:main]
+use = egg:waitress#main
+host = 0.0.0.0
+port = ${ports:ulearnhub}
+
+[loggers]
+keys = root, ulearnhub, exceptions, sqlalchemy, requestdump
+
+[handlers]
+keys = console, exceptionlog, conclean
+
+[formatters]
+keys = generic, clean
+
+[logger_root]
+level = WARN
+handlers = console
+
+[logger_requestdump]
+level = DEBUG
+handlers = conclean
+qualname = requestdump
+propagate=0
+
+[logger_exceptions]
+level = DEBUG
+handlers = exceptionlog
+qualname = exceptions
+
+[logger_ulearnhub]
+level = WARN
+handlers =
+qualname = ulearnhub
+
+[logger_sqlalchemy]
+level = WARN
+handlers =
+qualname = sqlalchemy.engine
+# "level = INFO" logs SQL queries.
+# "level = DEBUG" logs SQL queries and results.
+# "level = WARN" logs neither.  (Recommended for production systems.)
+
+[handler_exceptionlog]
+level = DEBUG
+class = handlers.WatchedFileHandler
+args = ('${buildout:directory}/var/log/exceptions.log', 'a')
+formatter = clean
+
+[handler_console]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = generic
+
+[handler_conclean]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = clean
+
+[formatter_clean]
+format = %(message)s
+
+[formatter_generic]
+format = %(asctime)s %(levelname)-5.5s [%(name)s][%(threadName)s] %(message)s

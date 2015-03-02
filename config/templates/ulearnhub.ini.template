@@ -14,7 +14,7 @@ sqlalchemy.url = sqlite:///${buildout:directory}/var/ulearnhub.sqlite
 
 session.type = file
 session.key = ulearnhub
-session.data_dir = ${buildout:directory/var/session
+session.data_dir = ${buildout:directory}/var/session
 session.secret = b24303ad099c041865a0f704ffe9cfcfe03accf5
 
 [server:main]

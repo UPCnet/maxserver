@@ -10,7 +10,7 @@ pyramid.default_locale_name = en
 pyramid.includes =
     pyramid_tm
 
-sqlalchemy.url = sqlite:///${buildout:directory}/var/ulearnhub.sqlite
+zodbconn.uri = file://${buildout:directory}/var/filestorage/Data.fs
 
 session.type = file
 session.key = ulearnhub

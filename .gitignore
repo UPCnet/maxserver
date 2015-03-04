@@ -45,6 +45,8 @@ var/*.pid
 var/repository
 var/avatars
 var/sessions
+var/session
+var/filestorage
 var/rabbitmq/mnesia
 var/rabbitmq/home
 var/*.sqlite

@@ -24,6 +24,41 @@
         proxy_pass    http://bigmax_server;
      }
 
+    location ~ ^/people/@@missing/avatar/large {
+        root {{parts.buildout.directory}}/var/avatars;
+        try_files /missing-people-large.png /missing-people.png =404;
+        add_header Content-Type image/png;
+    }
+
+    location ~ ^/people/@@missing/avatar {
+        root {{parts.buildout.directory}}/var/avatars;
+        try_files /missing-people.png =404;
+        add_header Content-Type image/png;
+    }
+
+    location ~ ^/people/([^\/][^\/])([^\/]+)/avatar/large {
+        if ($request_method = POST){
+            access_log   {{parts.buildout.directory}}/var/log/nginx.max.access.log  main;
+            proxy_pass   http://max_server;
+        }
+        root {{parts.buildout.directory}}/var/avatars/people;
+        access_log   {{parts.buildout.directory}}/var/log/nginx.access.log  main;
+        try_files /large/$1/$1$2 /$1/$1$2 /people/@@missing/avatar/large;
+        add_header Content-Type image/png;
+    }
+
+    location ~ ^/people/([^\/][^\/])([^\/]+)/avatar {
+        if ($request_method = POST){
+            access_log   {{parts.buildout.directory}}/var/log/nginx.max.access.log  main;
+            proxy_pass   http://max_server;
+        }
+        root {{parts.buildout.directory}}/var/avatars/people;
+        access_log   {{parts.buildout.directory}}/var/log/nginx.access.log  main;
+        try_files /$1/$1$2 /people/@@missing/avatar;
+        add_header Content-Type image/png;
+    }
+
+
     location @proxy_to_app {
         access_log   {{parts.buildout.directory}}/var/log/nginx.max.access.log  main;
         proxy_set_header X-Virtual-Host-URI $scheme://{{parts.hosts.max}}{% if parts.ports.nginx != '443' %}:{{parts.ports.nginx}}{% endif %};

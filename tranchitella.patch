@@ -1,0 +1,18 @@
+--- tranchitella/recipe/testrunner/__init__.py	2014-02-21 08:09:14.225769174 +0100
++++ tranchitella/recipe/testrunner/__init__.py	2015-04-09 07:32:39.491657079 +0200
+@@ -19,6 +19,7 @@
+ import os
+ import os.path
+ import pkg_resources
++import re
+ import sys
+ import zc.buildout.easy_install
+ import zc.recipe.egg
+@@ -166,6 +167,6 @@
+ def with_coverage(name, module, modules):
+     if hasattr(module, '__file__'):
+         for m in modules:
+-            if name.startswith(m):
++            if re.match(r'{}[\.$]'.format(m), name):
+                 return True
+     return False

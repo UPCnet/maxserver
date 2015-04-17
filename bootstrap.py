@@ -99,7 +99,7 @@ install_configfile(*who_configfiles)
 # will disable auth if we are deploying a development buildout
 mongoauth_configfiles = ('config/templates/mongoauth.cfg.template', 'mongoauth.cfg')
 if install_configfile(*mongoauth_configfiles):
-    if options.config_file in ['devel.cfg', 'devel-with-osiris.cfg']:
+    if options.config_file in ['devel.cfg', 'devel-with-osiris.cfg', 'devel-max-osiris-only.cfg']:
         content = open(mongoauth_configfiles[1]).read()
         open(mongoauth_configfiles[1], 'w').write(content.replace('enabled=true', 'enabled=false'))
 

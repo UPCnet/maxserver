@@ -1,0 +1,38 @@
+{
+    "deployments": {
+        "localhost": {
+            "title": "Local deployment",
+            "components": [
+                {
+                    "type": "maxcluster",
+                    "name": "develcluster",
+                    "title": "Devel MAX Server Cluster",
+                    "config": {}
+                },
+                {
+                    "type": "maxserver",
+                    "name": "devel",
+                    "title": "Devel MAX Server",
+                    "config": {
+                        "url": "http://localhost:8081"
+                    }
+                }
+            ]
+        }
+    },
+    "domains": {
+        "devel": {
+            "title": "Devel domain",
+            "components": [
+                {
+                    "deployment": "localhost",
+                    "type": "maxserver",
+                    "name": "devel"
+                }
+            ]
+        }
+    },
+    "users": [
+        {"domain": "devel", "username": "carles.bruguera", "roles": ["Manager"]}
+    ]
+}

@@ -65,6 +65,7 @@ config/osiris-instances/*.conf
 config/max-instances/*.conf
 config/circus-instances/*.conf
 config/circus.htpasswd
+config/ulearnhub_defaults.json
 downloads
 .max_settings
 src

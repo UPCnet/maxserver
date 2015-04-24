@@ -69,7 +69,7 @@ options, args = parser.parse_args()
 # Custom bootstraping step to generate extra .cfg files
 
 
-def install_configfile(source, destination):
+def install_configfile(source, destination, default_content=''):
     """
         Install a configfile from a template, only when destination file doesn't exists.
         Generates an empty file if source is not defined
@@ -79,7 +79,7 @@ def install_configfile(source, destination):
         if source:
             shutil.copyfile(source, destination)
         else:
-            open(destination, 'w').write('')
+            open(destination, 'w').write(default_content)
         print 'Generated config file {}'.format(os.path.realpath(destination))
         return True
 
@@ -102,6 +102,13 @@ if install_configfile(*mongoauth_configfiles):
     if options.config_file in ['devel.cfg', 'devel-with-osiris.cfg', 'devel-max-osiris-only.cfg']:
         content = open(mongoauth_configfiles[1]).read()
         open(mongoauth_configfiles[1], 'w').write(content.replace('enabled=true', 'enabled=false'))
+
+# initialize ulearnhub defaults with base settings for devel buildouts
+# All other buildout configs get an empty json to be completed
+if options.config_file in ['devel.cfg', 'devel-with-osiris.cfg', 'devel-max-osiris-only.cfg']:
+    install_configfile('config/templates/ulearnhub_defaults.json', 'config/ulearnhub_defaults.json')
+else:
+    install_configfile(None, 'config/ulearnhub_defaults.json', '{"deployments": {},"domains": {},"users": []}')
 
 # Initialize customizeme.cfg if a matching template is found
 customizeme_template = 'config/templates/customizeme/customizeme.{}'.format(options.config_file)

@@ -27,14 +27,6 @@ password = ${supervisor-config:password}
 supervisor.rpcinterface_factory=supervisor.rpcinterface:make_main_rpcinterface
 
 
-[fcgi-program:max]
-command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/max.ini
-process_name = max
-directory = ${buildout:directory}/bin
-priority = 20
-numprocs = 1
-socket = tcp://0.0.0.0:${ports:max}
-
 [fcgi-program:osiris]
 command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/osiris.ini
 process_name = osiris

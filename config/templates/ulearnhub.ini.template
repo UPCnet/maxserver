@@ -24,7 +24,7 @@ host = 0.0.0.0
 port = ${ports:ulearnhub}
 
 [loggers]
-keys = root, ulearnhub, exceptions, sqlalchemy, requestdump
+keys = root, ulearnhub, exceptions, requestdump
 
 [handlers]
 keys = console, exceptionlog, conclean
@@ -48,17 +48,10 @@ handlers = exceptionlog
 qualname = exceptions
 
 [logger_ulearnhub]
-level = WARN
-handlers =
+level = INFO
+handlers = ulearnhub
 qualname = ulearnhub
-
-[logger_sqlalchemy]
-level = WARN
-handlers =
-qualname = sqlalchemy.engine
-# "level = INFO" logs SQL queries.
-# "level = DEBUG" logs SQL queries and results.
-# "level = WARN" logs neither.  (Recommended for production systems.)
+propagate = 0
 
 [handler_exceptionlog]
 level = DEBUG

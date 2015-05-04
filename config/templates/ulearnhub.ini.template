@@ -49,7 +49,7 @@ qualname = exceptions
 
 [logger_ulearnhub]
 level = INFO
-handlers = ulearnhub
+handlers = console
 qualname = ulearnhub
 propagate = 0
 

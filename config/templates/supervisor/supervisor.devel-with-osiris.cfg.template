@@ -28,7 +28,7 @@ supervisor.rpcinterface_factory=supervisor.rpcinterface:make_main_rpcinterface
 
 
 [program:mongodb]
-command = ${buildout:directory}/bin/mongod --config ${buildout:directory}/config/mongodb.conf
+command = ${mongodb-config:numactl} ${buildout:directory}/bin/mongod --config ${buildout:directory}/config/mongodb.conf
 process_name = mongodb
 directory = ${buildout:directory}/bin
 priority = 10
@@ -50,7 +50,7 @@ numprocs = 1
 socket = tcp://0.0.0.0:${ports:max}
 
 [fcgi-program:ulearnhub]
-command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/ulearn-hub.ini
+command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/ulearnhub.ini
 process_name = ulearnhub
 directory = ${buildout:directory}/bin
 priority = 20

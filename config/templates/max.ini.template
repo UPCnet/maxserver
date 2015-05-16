@@ -26,6 +26,7 @@ max.include_traceback_in_500_errors = false
 avatar_folder = ${buildout:directory}/var/avatars
 config_directory = ${buildout:directory}/config/
 file_repository = ${buildout:directory}/var/repository
+exceptions_folder = ${buildout:directory}/var/log/exceptions
 
 mongodb.url = ${urls:mongo}
 mongodb.db_name = max_${max-config:name}
@@ -45,10 +46,10 @@ port = ${ports:max}
 # Begin logging configuration
 
 [loggers]
-keys = root, max, exceptions, requestdump
+keys = root, max, requestdump
 
 [handlers]
-keys = console, exceptionlog, conclean
+keys = console, conclean
 
 [formatters]
 keys = generic, clean
@@ -68,17 +69,6 @@ level = DEBUG
 handlers = conclean
 qualname = requestdump
 propagate=0
-
-[logger_exceptions]
-level = DEBUG
-handlers = exceptionlog
-qualname = exceptions
-
-[handler_exceptionlog]
-level = DEBUG
-class = handlers.WatchedFileHandler
-args = ('${buildout:directory}/var/log/exceptions.log', 'a')
-formatter = clean
 
 [handler_console]
 class = StreamHandler

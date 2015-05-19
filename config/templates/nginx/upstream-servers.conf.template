@@ -6,8 +6,8 @@
     server ${hosts:bigmax}:${ports:bigmax} fail_timeout=0;
   }
 
-  upstream hub_server {
-    server ${hosts:ulearnhub}:${ports:ulearnhub} fail_timeout=0;
+  upstream ulearnhub_server {
+    server ${hosts:max}:${ports:ulearnhub} fail_timeout=0;
   }
 
   upstream rabbitmq_web_stomp_server {

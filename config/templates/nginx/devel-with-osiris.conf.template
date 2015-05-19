@@ -42,6 +42,9 @@ http {
   # Osiris server
   include       {{parts.buildout.directory}}/config/nginx/osiris-server.conf;
 
+  # Ulearnhub server
+  include       {{parts.buildout.directory}}/config/nginx/ulearnhub-server.conf;
+
   # Include other virtualhosts
   include {{parts.buildout.directory}}/config/sites-enabled/*;
 }

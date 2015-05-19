@@ -55,6 +55,9 @@ http {
   # Max server & bigmax
   include       ${buildout:directory}/config/nginx/max-server.conf;
 
+  # Ulearnhub server
+  include       {{parts.buildout.directory}}/config/nginx/ulearnhub-server.conf;
+
   # Osiris server
   include       ${buildout:directory}/config/nginx/osiris-server.conf;
 

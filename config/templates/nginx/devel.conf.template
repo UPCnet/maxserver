@@ -32,7 +32,7 @@ http {
   include       ${buildout:directory}/config/nginx/max-server.conf;
 
   # Ulearnhub server
-  include       {{parts.buildout.directory}}/config/nginx/ulearnhub-server.conf;
+  include       ${buildout:directory}/config/nginx/ulearnhub-server.conf;
 
   # Include other virtualhosts
   include ${buildout:directory}/config/sites-enabled/*;

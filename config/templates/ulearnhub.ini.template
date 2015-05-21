@@ -12,6 +12,7 @@ pyramid.includes =
 
 zodbconn.uri = file://${buildout:directory}/var/filestorage/Data.fs
 ulearnhub.defaults = ${buildout:directory}/config/ulearnhub_defaults.json
+exceptions_folder = ${buildout:directory}/var/log/ulearnhub_exceptions
 
 session.type = file
 session.key = ulearnhub

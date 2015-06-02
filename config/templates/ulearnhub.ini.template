@@ -1,8 +1,8 @@
 [app:main]
 use = egg:ulearnhub
 
-pyramid.reload_templates = ${ulearnhub-config.development}
-pyramid.debug_templates = ${ulearnhub-config.development}
+pyramid.reload_templates = ${ulearnhub-config:development}
+pyramid.debug_templates = ${ulearnhub-config:development}
 pyramid.debug_authorization = false
 pyramid.debug_notfound = false
 pyramid.debug_routematch = false
@@ -14,7 +14,7 @@ zodbconn.uri = file://${buildout:directory}/var/filestorage/Data.fs
 
 exceptions_folder = ${buildout:directory}/var/log/ulearnhub_exceptions
 ulearnhub.defaults = ${buildout:directory}/config/ulearnhub_defaults.json
-ulearnhub.development = ${ulearnhub-config:.development}
+ulearnhub.development = ${ulearnhub-config:development}
 
 session.type = file
 session.key = ulearnhub

@@ -13,6 +13,7 @@ activity:contexts.url
 activity:visible
 activity:verb
 activity:flagged
+activity:verb,contexts.hash,-_id,visible
 
 conversations:participants
 conversations.objectType

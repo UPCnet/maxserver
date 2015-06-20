@@ -36,7 +36,7 @@ http {
   include       {{parts.buildout.directory}}/config/nginx/common-settings.conf;
   include       {{parts.buildout.directory}}/config/nginx/upstream-servers.conf;
 
-  # Max server & bigmax
+  # Max server
   include       {{parts.buildout.directory}}/config/nginx/max-server.conf;
 
   # Osiris server

@@ -45,7 +45,7 @@ http {
       rewrite ^(.*)$ https://$server_name$1 last;
   }
 
-  # Max server & bigmax
+  # Max server
   include       ${buildout:directory}/config/nginx/max-server.conf;
 
   # Ulearnhub server

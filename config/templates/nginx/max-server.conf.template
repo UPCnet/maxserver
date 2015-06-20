@@ -19,7 +19,7 @@
     # Respond to CORS OPTION requests
     include {{parts.buildout.directory}}/config/nginx/cors-preflight.conf;
 
-    # Max root instance & bigmax
+    # Max root instance & related hub domain entry
     include {{parts.buildout.directory}}/config/nginx/max-root-instance.conf;
 
   }

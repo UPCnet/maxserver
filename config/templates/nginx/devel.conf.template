@@ -28,7 +28,7 @@ http {
   include       ${buildout:directory}/config/nginx/common-settings.conf;
   include       ${buildout:directory}/config/nginx/upstream-servers.conf;
 
-  # Max server & bigmax
+  # Max server
   include       ${buildout:directory}/config/nginx/max-server.conf;
 
   # Ulearnhub server

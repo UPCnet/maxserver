@@ -2,10 +2,6 @@
     server ${upstream-hosts:max}:${ports:max} fail_timeout=0;
   }
 
-  upstream bigmax_server {
-    server ${upstream-hosts:bigmax}:${ports:bigmax} fail_timeout=0;
-  }
-
   upstream ulearnhub_server {
     server ${upstream-hosts:ulearnhub}:${ports:ulearnhub} fail_timeout=0;
   }

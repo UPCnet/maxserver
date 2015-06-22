@@ -1,6 +1,7 @@
   server {
     listen {{parts.ports.nginx}};
     server_name {{parts.hosts.ulearnhub}};
+    rewrite ^/(.*)/$ /$1 permanent;
 
     {% if parts.ports.nginx == '443' %}ssl on;{% endif %}
 

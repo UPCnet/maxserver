@@ -33,6 +33,6 @@
         }
     },
     "users": [
-        {"domain": "devel", "username": "carles.bruguera", "roles": ["Manager"]}
+        {"domain": "devel", "username": "restricted", "roles": ["Manager"]}
     ]
 }

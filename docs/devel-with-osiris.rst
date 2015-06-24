@@ -17,14 +17,27 @@ The generated customizeme.cfg file has sensible defaults for a development envir
 
     ./bin/supervisord
 
-- Max needs an existing user to be assigned as Manager. To create and assign initial permissions to a choosen user, execute the following command. This command also initializes all rabbitmq echanges and queues expected by max and other components of the stack.
+- Max needs an user to be assigned as Manager. To create and assign initial permissions to a choosen user, execute the following command.
 
-    ./bin/max.initialize username config/max.ini
+..note:: This user MUST be an existing user on the ldap linked to osiris.
 
+    ./bin/max.security add username
+
+- Add the previoysly created user and any users you want/need to max. You'll be asked a username and password the first time. Use the one you've just granted Manager role in the last step::
+
+    ./bin/max.devel add user restricted
+
+    ./bin/max.devel add user <username>
 
 * Restart max process to reload all the changes::
 
     $ ./bin/supervisorctl restart max
+
+* Initialize RabbitMQ queues, exchanges and bindings. This will create all the exchanges and queues nedded for each user that exists on the database::
+
+.. note:: You can run this command every time you want to ensure consistency of the current rabbit exchanges and queues, related with users and conversations present on max::
+
+    ./bin/max.rabbit
 
 
 Optional steps
@@ -45,8 +58,3 @@ Optional steps
 
     ./bin/max.devel add user username
 
-* Rebuild RabbitMQ queues, exchanges and bindings. This will create all the exchanges and queues nedded for each user that exists on the database::
-
-.. note:: You can run this command every time you want to ensure consistency of the current rabbit exchanges and queues, related with users and conversations present on max::
-
-    ./bin/max.rabbit -c config/max.ini

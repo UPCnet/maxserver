@@ -87,13 +87,9 @@ def install_configfile(source, destination, default_content=''):
 cloudapis_configfiles = ('config/templates/cloudapis.ini.template', 'config/cloudapis.ini')
 install_configfile(*cloudapis_configfiles)
 
-# Initialize osiris auth ldap config files
+# Initialize ldap config files
 ldap_configfiles = ('config/templates/ldap.ini.template', 'config/ldap.ini')
 install_configfile(*ldap_configfiles)
-
-# Initialize osiris auth ldap config files
-who_configfiles = ('config/templates/osiris-who.ini.template', 'config/osiris-who.ini')
-install_configfile(*who_configfiles)
 
 # Initialize mongo authorization config file
 # will disable auth if we are deploying a development buildout

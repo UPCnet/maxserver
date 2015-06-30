@@ -1,4 +1,4 @@
-from max.rest.utils import get_avatar_folder
+from max.utils.image import get_avatar_folder
 import os
 import re
 import shutil

@@ -1,5 +1,6 @@
 users:username
-users:twitterUsername
+users:twitterUsername:s
+users:twitterHashtag:s
 users:talkingIn.id
 users:subscribedTo.hash
 

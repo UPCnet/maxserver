@@ -28,3 +28,4 @@ activity:actor.username,verb,likesCount
 conversations:participants
 conversations.objectType
 
+messages:contexts.id

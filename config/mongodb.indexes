@@ -1,10 +1,13 @@
 users:username
 users:twitterUsername
 users:talkingIn.id
+users:subscribedTo.hash
 
 contexts:urlHash
 contexts:twitterUsername
 contexts:twitterHashtag
+contexts:url
+contexts:permissions.read,url,_id
 
 activity:actor.username
 activity:object._keywords
@@ -14,6 +17,12 @@ activity:visible
 activity:verb
 activity:flagged
 activity:verb,contexts.hash,-_id,visible
+activity:contexts.url,verb,lastComment
+activity:actor.username,verb,lastComment
+activity:contexts.url,verb,_id
+activity:actor.username,verb,_id
+activity:contexts.url,verb,likesCount
+activity:actor.username,verb,likesCount
 
 conversations:participants
 conversations.objectType

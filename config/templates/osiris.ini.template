@@ -14,7 +14,9 @@ osiris.store.host = ${hosts:mongodb}
 osiris.store.port = ${ports:mongodb}
 osiris.store.db = osiris_${osiris-config:name}
 osiris.store.collection = tokens
-osiris.tokenexpiry = 0
+osiris.jwt.expiry = ${osiris-config:expiry}
+osiris.jwt.secret = ${osiris-config:secret}
+osiris.jwt.algorithm = ${osiris-config:algorithm}
 
 osiris.mongodb.cluster = ${mongodb-config:cluster_enabled}
 osiris.mongodb.hosts = ${mongodb-config:cluster_hosts}

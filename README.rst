@@ -18,6 +18,8 @@ System dependencies
 
 * Check erlang version by executing ``erl -version``. You need erlang at least 5.10.2 R16B01. If you can't get it from your distribution, get the latest erlang and build it from sources following instructions from http://www.erlang.org/doc/installation_guide/INSTALL.html#Required-Utilities_Unpackingn
 
+* On OSX 10.11 or later, you will have to execute the buildouts prefixing the command with CFLAGS='-std=c99' as this flag is needed to compile gevent on some osx versions.
+
 Deployment options
 ------------------
 

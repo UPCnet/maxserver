@@ -60,7 +60,7 @@ handlers = console
 
 [logger_max]
 level = WARN
-handlers =
+handlers = console
 qualname = max
 propagate=0
 

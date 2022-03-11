@@ -34,6 +34,10 @@ First of all, there's some files that are common to all configurations:
 
 The following files are used for development and debugging:
 
+- `devel-new.cfg <docs/devel-new.rst>`_ - Development version, to mount a max, oauth, maxbunny, maxtweety and ulearnhub locally. We install nginx, mongo and rabbit in docker.
+
+Old versions to develop locally:
+
 - `devel.cfg <docs/devel.rst>`_ - Development version, full stack, with sources from git
 - `devel-with-osiris.cfg <docs/devel-with-osiris.rst>`_ - Development version, full stack, with sources from git, using local oauth
 - `debug.cfg <docs/debug.rst>`_ - To connect to a (monolytic) remote max environment locally.

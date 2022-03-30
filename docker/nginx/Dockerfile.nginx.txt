@@ -1,0 +1,14 @@
+FROM ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Madrid
+
+RUN apt-get update && apt-get dist-upgrade -y && \
+   apt-get install -y nginx nginx-extras libnginx-mod-http-headers-more-filter vim
+
+RUN rm /etc/nginx/sites-enabled/default
+
+COPY ./instances.conf /etc/nginx/conf.d
+COPY ./max-instances/ /etc/nginx/max-instances/
+COPY ./osiris-instances/ /etc/nginx/osiris-instances/
+

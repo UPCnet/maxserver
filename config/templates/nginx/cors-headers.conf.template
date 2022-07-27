@@ -1,5 +1,5 @@
     more_set_headers 'Access-Control-Allow-Origin: *';
     more_set_headers 'Access-Control-Allow-Credentials: true';
     more_set_headers 'Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS';
-    more_set_headers 'Access-Control-Allow-Headers: X-HTTP-Method-Override,X-Oauth-Token,X-Oauth-Username,X-Oauth-Scope,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,X-Has-Remaining-Items,X-totalItems';
+    more_set_headers 'Access-Control-Allow-Headers: X-HTTP-Method-Override,X-Oauth-Token,X-Oauth-Username,X-Oauth-Scope,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,X-Has-Remaining-Items,X-totalItems,X-From-Utalk';
     more_set_headers 'Access-Control-Expose-Headers: X-Has-Remaining-Items,X-totalItems';

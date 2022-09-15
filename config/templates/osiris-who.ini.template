@@ -22,6 +22,8 @@ use = repoze.who.plugins.htpasswd:make_plugin
 filename = %(here)s/devel-users
 check_fn = repoze.who.plugins.htpasswd:crypt_check
 
+${osiris-config:plugin}
+
 [general]
 request_classifier = repoze.who.classifiers:default_request_classifier
 challenge_decider = repoze.who.classifiers:default_challenge_decider

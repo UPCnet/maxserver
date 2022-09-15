@@ -1,0 +1,9 @@
+[fcgi-program:osiris_${osiris-config:name}]
+command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/osiris.ini
+process_name = osiris_${osiris-config:name}
+directory = ${buildout:directory}/bin
+redirect_stderr = true
+user = pyramid
+priority = 20
+numprocs = 1
+socket = tcp://0.0.0.0:${ports:osiris}

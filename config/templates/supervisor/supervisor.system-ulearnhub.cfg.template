@@ -1,0 +1,9 @@
+[fcgi-program:ulearnhub]
+command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/ulearnhub.ini
+process_name = ulearnhub
+directory = ${buildout:directory}/bin
+redirect_stderr = true
+user = pyramid
+priority = 20
+numprocs = 1
+socket = tcp://0.0.0.0:16000

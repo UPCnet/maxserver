@@ -1,0 +1,9 @@
+[fcgi-program:max_${max-config:name}]
+command = ${buildout:directory}/bin/chaussette --fd 0 --backend gevent paste:${buildout:directory}/config/max.ini
+process_name = max_${max-config:name}
+directory = ${buildout:directory}/bin
+redirect_stderr = true
+user = pyramid
+priority = 20
+numprocs = 1
+socket = tcp://0.0.0.0:${ports:max}

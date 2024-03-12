@@ -66,6 +66,7 @@ config/max-instances/*.conf
 config/circus-instances/*.conf
 config/circus.htpasswd
 config/ulearnhub_defaults.json
+config/utalk-*.json
 downloads
 .max_settings
 src
